@@ -1,1 +1,22 @@
-<h2>商品一覧</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+    <div class="border border-dark mt-5">
+      <h4 class="border-bottom border-dark text-center">ジャンル検索</h4>
+       <div class="genre-index"></div>
+    </div>
+    </div>
+    <div class="col-md-9">
+      <h2 class="mt-5 d-inline-block">商品一覧</h2>(全<%= @items.count %>件)
+    <div class="row">
+    <% @items.each do |item| %>
+    <div class="col-md-3">
+      <div class="item-img"></div>
+      <%= item.name %><br>
+      ￥<%= item.non_tax_price %>
+    </div>
+    <% end %>
+    </div>
+    </div>
+  </div>
+</div>
