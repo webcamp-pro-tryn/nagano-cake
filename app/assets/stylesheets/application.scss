@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+.hosttitle {
+	margin-left: 100px;
+	padding-bottom: 30px;
+}
