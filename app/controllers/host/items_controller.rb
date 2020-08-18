@@ -1,4 +1,4 @@
-class ItemsController < ApplicationController
+class Host::ItemsController < ApplicationController
 
 	def top
 	end
@@ -8,9 +8,9 @@ class ItemsController < ApplicationController
 	end
 
 	def create
-		item = Item.new(item_params)
-		item.save
-		redirect_to items_path
+		@item = Item.new(item_params)
+		@item.save
+		redirect_to host_item_path(@item)
 	end
 
 	def index
@@ -24,6 +24,8 @@ class ItemsController < ApplicationController
 	end
 
 	def update
+		@item.update(item_params)
+		redirect_to host_item_path(@item.id)
 	end
 
 	private
