@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2020_08_18_091943) do
     t.integer "quantity"
   end
 
+
   create_table "customers", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
