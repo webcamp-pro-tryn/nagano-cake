@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     registrations: "customers/devise/registrations"
   }
   namespace :customers do
-    resources :items, only: [:index]
+    resources :items, only: [:index, :show]
+    resources :cart_items
   end
 end
