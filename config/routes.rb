@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   }
   namespace :customers do
     resources :items, only: [:index, :show]
-    resources :cart_items
+    resources :cart_items, only: [:new, :index, :create] do
+      delete :destroy_all, on: :member
+    end
   end
+  delete 'customers/cart_items' => 'customers/cart_items#destroy_all',as:'destroy_all'
 end
