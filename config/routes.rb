@@ -4,5 +4,9 @@ Rails.application.routes.draw do
     registrations: 'hosts/registrations',
     sessions: "hosts/sessions",
      }
+  namespace :hosts do
+    resources :customers
+    resources :genre
+end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
