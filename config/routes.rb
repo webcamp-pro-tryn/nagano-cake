@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
-=======
+
   devise_for :customers, controllers: {
     sessions: "customers/devise/sessions",
     passwords: "customers/devise/passwords",
@@ -8,6 +7,7 @@ Rails.application.routes.draw do
   }
   namespace :customers do
     resources :items, only: [:index]
+    resources :customers, only: [:show, :edit, :update, :destroy]
   end
->>>>>>> origin
+
 end
