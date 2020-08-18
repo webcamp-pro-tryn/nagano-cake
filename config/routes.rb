@@ -10,7 +10,9 @@ Rails.application.routes.draw do
     registrations: "customers/devise/registrations"
   }
   namespace :customers do
-    resources :items, only: [:index]
+
+    resources :items, only: [:index, :show]
+    resources :cart_items
     resources :customers, only: [:show, :edit, :update, :destroy]
     get "/customers/:id/withdraw_confirm" => "customers#withdraw_confirm"
   	patch "/customers/:id/withdraw" => "customers#withdraw", as:"customers_withdraw"

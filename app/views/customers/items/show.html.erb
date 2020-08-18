@@ -1,0 +1,25 @@
+<div class="container my-5">
+  <div class="row">
+  <%# ジャンルボックス表示 %>
+    <div class="col-md-3">
+      <%= render 'customers/items/genre_serch' %>
+    </div>
+
+    <div class="col-md-9 mt-3">
+    <%# 画像 %>
+      <div class="col-md-5 mt-5 item-img-show"></div>
+
+      <div class="col-md-5 mt-5 ml-2">
+      <%# 商品名 %>
+        <h3 class="font-weight-bold" ><%= @item.name %></h3>
+      <%# 商品説明 %>
+        <p class="item-description"><%= @item.description %></p>
+        <h3 class="d-inline mr-3">¥ <%= (@item.non_tax_price * 1.1).floor %></h3>(税込)
+        
+        <%= form_for ( new_customers_cart_item_path ) do |f| %>
+          <%= f.select :quantity, min:1, placeholder: "個数選択" %><span>個</span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
