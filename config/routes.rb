@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
-  devise_for :customers
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :customers, only: [:show, :edit, :update, :destroy]
-  resources :items
+<<<<<<< HEAD
+=======
+  devise_for :customers, controllers: {
+    sessions: "customers/devise/sessions",
+    passwords: "customers/devise/passwords",
+    registrations: "customers/devise/registrations"
+  }
+  namespace :customers do
+    resources :items, only: [:index]
+  end
+>>>>>>> origin
 end
