@@ -21,13 +21,13 @@ end
     passwords: "customers/devise/passwords",
     registrations: "customers/devise/registrations"
   }
+
   namespace :customers do
-
     resources :items, only: [:index, :show]
-    resources :cart_items
     resources :customers, only: [:show, :edit, :update, :destroy]
-    get "/customers/:id/withdraw_confirm" => "customers#withdraw_confirm"
-  	patch "/customers/:id/withdraw" => "customers#withdraw", as:"customers_withdraw"
+    resources :cart_items, only: [:index, :create, :destroy, :update]
+    get "/:id/withdraw_confirm" => "customers#withdraw_confirm"
+    patch "/:id/withdraw" => "customers#withdraw", as:"customers_withdraw"
+    delete "/destroy_all" => "cart_items#destroy_all",as:"destroy_all"
   end
-
 end
