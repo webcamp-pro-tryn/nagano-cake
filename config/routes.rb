@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  # get 'deliveries/index'
+  # get 'deliveries/create'
+  # get 'deliveries/update'
+  # get 'deliveries/destroy'
+  # get 'deliveries/edit'
   devise_for :hosts, controllers: {
   sessions: 'hosts/sessions'}
 
@@ -20,9 +25,14 @@ Rails.application.routes.draw do
 
     resources :items, only: [:index, :show]
     resources :cart_items
-    resources :customers, only: [:show, :edit, :update, :destroy]
-    get "/customers/:id/withdraw_confirm" => "customers#withdraw_confirm"
-  	patch "/customers/:id/withdraw" => "customers#withdraw", as:"customers_withdraw"
-  end
+    resources :deliveries, only: [:index, :edit, :create, :update, :destroy]
+
+    get "/:id" => "customers#show"
+    get "/:id/edit" => "customers#edit", as:"edit"
+    patch "/:id" => "customers#update"
+    get "/:id/withdraw_confirm" => "customers#withdraw_confirm", as:"withdraw_confirm"
+  	patch "/:id/withdraw" => "customers#withdraw", as:"withdraw"
+
+   end
 
 end
