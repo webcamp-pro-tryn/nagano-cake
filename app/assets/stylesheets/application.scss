@@ -14,5 +14,15 @@
  *= require_self
  */
 
- @import "bootstrap-sprockets";
- @import "bootstrap";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+.hosttitle {
+	margin-left: 100px;
+	padding-bottom: 30px;
+}
+.host-login{
+	text-align: center;
+	margin-top:50px;
+}

@@ -1,21 +1,19 @@
 require 'test_helper'
 
-class CustomersControllerTest < ActionDispatch::IntegrationTest
-
+class GenreControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
-    get customers_index_url
+    get genre_index_url
     assert_response :success
   end
 
   test "should get show" do
-    get customers_show_url
+    get genre_show_url
     assert_response :success
   end
 
   test "should get edit" do
-    get customers_edit_url
+    get genre_edit_url
     assert_response :success
   end
-
 
 end
