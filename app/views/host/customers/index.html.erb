@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <h3 class="login-title col-xs-offset-2">会員一覧</h3>
+    <table class="table table-bordered">
+				<thead>
+						<th>会員ID</th>
+						<th>氏名</th>
+						<th>メールアドレス</th>
+						<th>ステータス</th>
+				</thead>
+				<tbody>
+					<%= @customers.each do |customer| %>
+					  <tr>
+						<td><%= customer.id %></td>
+						<td>
+							<%= link_to  hosts_customer_path(customer) do %>
+							<%= customer.family_name%><%= customer.first_name %>
+						</td>
+						<td><%= customer.email %></td>
+						<td>
+							<% if customer.is_deleted ==true %>
+							有効
+							<% else %>
+							退会済み
+							<% end %>
+						</td>
+					  </tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
