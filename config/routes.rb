@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
 
   # get 'deliveries/index'
   # get 'deliveries/create'
@@ -9,11 +8,10 @@ Rails.application.routes.draw do
   devise_for :hosts, controllers: {
   sessions: 'hosts/sessions'}
 
-=======
   get 'orders/index'
   get 'orders/show'
   get 'orders/edit'
->>>>>>> origin/master
+
   namespace :host do
     get 'top'=>'items#top'
     resources :items
@@ -36,8 +34,7 @@ end
 
   namespace :customers do
     resources :items, only: [:index, :show]
-<<<<<<< HEAD
-    resources :cart_items
+
     resources :deliveries, only: [:index, :edit, :create, :update, :destroy]
 
     get "/:id" => "customers#show"
@@ -46,14 +43,11 @@ end
     get "/:id/withdraw_confirm" => "customers#withdraw_confirm", as:"withdraw_confirm"
   	patch "/:id/withdraw" => "customers#withdraw", as:"withdraw"
 
-   end
-
-=======
     resources :customers, only: [:show, :edit, :update, :destroy]
     resources :cart_items, only: [:index, :create, :destroy, :update]
     get "/:id/withdraw_confirm" => "customers#withdraw_confirm"
     patch "/:id/withdraw" => "customers#withdraw", as:"customers_withdraw"
     delete "/destroy_all" => "cart_items#destroy_all",as:"destroy_all"
   end
->>>>>>> origin/master
+
 end
