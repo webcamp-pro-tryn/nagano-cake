@@ -24,8 +24,8 @@
 	      </div>
 	      <div class="field">
 					<p>
-						税込価格　　　　<%= tax_price(@item.non_tax_price).to_s(:delimited) %>
-	        								(<%= @item.non_tax_price.to_s(:delimited) %>) 円<br>
+						税込価格　　　　<%= (@item.non_tax_price * 1.1).floor %>
+	        								(<%= @item.non_tax_price %>) 円<br>
 						(税抜価格)
 					</p><br>
 	      </div>
@@ -40,7 +40,7 @@
 					</p>
 	      </div>
 		  <div class="actions col-xs-9">
-	      		<%= link_to "編集する", edit_host_item_path(@item), data: {"turbolinks" => false}, class: "glyphicon glyphicon-pencil btn btn-success pull-right" %>
+	      		<%= link_to "編集する", edit_host_item_path(@item), data: {"turbolinks" => false}, class: "glyphicon glyphicon-pencil btn btn-primary pull-right" %>
       	  </div>
       	</div>
     </div>
