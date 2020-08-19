@@ -1,4 +1,4 @@
-class GenreController < ApplicationController
+class Host::OrdersController < ApplicationController
   def index
   end
 
