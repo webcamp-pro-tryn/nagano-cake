@@ -23,6 +23,7 @@
             <%= f.select :quantity,(1..10).to_a, { include_blank: '個数選択'}, { class: 'form-control product-show-form-contro' } %>
           </div>
           <div class="col-md-2">
+          <%= f.hidden_field :item_id, :value => @item.id %>
             <%= f.submit 'カートに入れる', class: "btn btn-success btn-new-register btn-lg"%>
           </div>
         </div>
