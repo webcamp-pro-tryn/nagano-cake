@@ -1,10 +1,54 @@
 <div class="container">
   <div class="row">
-  <div class="mr-auto">
-    <h2 class="p-3 px-5 mt-5 bg-light">ショッピングカート</h2>
+    <div class="mr-auto">
+      <h2 class="p-3 px-5 mt-5 bg-light">ショッピングカート</h2>
+    </div>
+    <div class="btn-box  mt-5">
+        <%= link_to "カートを空にする",  customers_destroy_all_path, method: :delete, class:"btn btn-danger" %>
+    </div>
   </div>
-    <div class="btn-box text-right mt-5">
-				<%= link_to "カートを空にする", destroy_all_path, method: :delete, class:"btn btn-danger" %>
-			</div>
+  <div class="row">
+    <table class="table table-bordered mt-5">
+        <thead class="thead-light">
+          <th>商品名</th>
+          <th>単価(税込)</th>
+          <th>数量</th>
+          <th>小計</th>
+          <th></th>
+        <thead>
+
+      <% @cart_items.each do |cart_item| %>
+        <tbody>
+        <%# 商品画像、商品名 %>
+            <td class="align-middle"><div class="item-img-cart"></div><span class="item-name"><%= cart_item.item.name %></span></td>
+        <%# 単価 %>
+            <td class="align-middle"><%= (cart_item.item.non_tax_price * 1.1).floor %></td>
+        <%# 数量 %>
+            <td>
+              <%= form_for(cart_item, url:customers_cart_item_path(cart_item)) do |f| %>
+                <div class="row">
+                  <%= f.select :quantity,(1..10).to_a, { include_blank: cart_item.quantity} %>
+                  <%= f.submit "変更", class: "btn btn-sm btn-outline-danger" %>
+                </div>
+              <% end %>
+            </td>
+            <%# 小計 %>
+            <td><%= (cart_item.item.non_tax_price * 1.1).floor * cart_item.quantity%></td>
+            <%# 削除ボタン %>
+            <td><%= link_to "削除する", customers_cart_item_path(cart_item), method: :delete, class:"btn btn-danger mx-auto" %>
+        </tbody>
+      <% end %>
+    </table>
   </div>
+
+  
+    <div class="row">
+      <div class="mr-auto mt-5">
+        <%= link_to "買い物を続ける", customers_items_path, class: "btn btn-primary" %>
+      </div>
+      <div class="mt-5">
+        <strong class="red-border px-3 pb-1">合計金額 円</strong>
+      </div>
+    </div>
+
 </div>
