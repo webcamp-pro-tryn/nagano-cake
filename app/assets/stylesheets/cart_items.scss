@@ -1,3 +1,9 @@
-// Place all the styles related to the cart_items controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.item-img-cart {
+  height: 50px;
+  width: 50px;
+  display: inline-block;
+  border: 1px solid black;
+}
+.item-name {
+  line-height: auto;
+}

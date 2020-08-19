@@ -2,7 +2,7 @@ class Customers::CustomersController < ApplicationController
 
 	def show
 		@customer = Customer.find(params[:id])
-		@cunstomer = current_customer
+		@customer = current_customer
 	end
 
 	def withdraw
@@ -23,10 +23,7 @@ class Customers::CustomersController < ApplicationController
 	def update
 		customer = Customer.find(params[:id])
 		customer.update(customer_params)
-		redirect_to customers_customer_path(customer.id)
-	end
-
-	def destroy
+		redirect_to customers_path(customer.id)
 	end
 
 	private
