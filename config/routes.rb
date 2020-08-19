@@ -1,7 +1,17 @@
 Rails.application.routes.draw do
+
+  # get 'deliveries/index'
+  # get 'deliveries/create'
+  # get 'deliveries/update'
+  # get 'deliveries/destroy'
+  # get 'deliveries/edit'
+  devise_for :hosts, controllers: {
+  sessions: 'hosts/sessions'}
+
   get 'orders/index'
   get 'orders/show'
   get 'orders/edit'
+
   namespace :host do
     get 'top'=>'items#top'
     resources :items
@@ -24,10 +34,20 @@ end
 
   namespace :customers do
     resources :items, only: [:index, :show]
+
+    resources :deliveries, only: [:index, :edit, :create, :update, :destroy]
+
+    get "/:id" => "customers#show"
+    get "/:id/edit" => "customers#edit", as:"edit"
+    patch "/:id" => "customers#update"
+    get "/:id/withdraw_confirm" => "customers#withdraw_confirm", as:"withdraw_confirm"
+  	patch "/:id/withdraw" => "customers#withdraw", as:"withdraw"
+
     resources :customers, only: [:show, :edit, :update, :destroy]
     resources :cart_items, only: [:index, :create, :destroy, :update]
     get "/:id/withdraw_confirm" => "customers#withdraw_confirm"
     patch "/:id/withdraw" => "customers#withdraw", as:"customers_withdraw"
     delete "/destroy_all" => "cart_items#destroy_all",as:"destroy_all"
   end
+
 end
