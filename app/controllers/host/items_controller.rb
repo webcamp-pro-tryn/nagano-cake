@@ -1,5 +1,7 @@
 class Host::ItemsController < ApplicationController
 
+	before_action :set_genres, only: [:new, :edit, :index, :create, :update]
+
 	def top
 	end
 
@@ -18,12 +20,15 @@ class Host::ItemsController < ApplicationController
 	end
 
 	def show
+		@item = Item.find_by(id: params[:id])
 	end
 
 	def edit
+		@item = Item.find(params[:id])
 	end
 
 	def update
+		@item = Item.find(params[:id])
 		@item.update(item_params)
 		redirect_to host_item_path(@item.id)
 	end
@@ -32,4 +37,9 @@ class Host::ItemsController < ApplicationController
 	def item_params
 		params.require(:item).permit(:name, :image, :description, :genre_id, :non_tax_price, :is_active)
 	end
+
+	def set_genres
+		@genres = Genre.where(is_active: true)
+	end
+
 end
