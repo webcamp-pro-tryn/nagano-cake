@@ -1,0 +1,31 @@
+<div class="container">
+    	<div class="row">
+    		<div class="col-xs-2">
+    	</div>
+    <div class="col-xs-8">
+      <h3 class="customer-title-show">
+    	<strong>注文詳細
+    	</strong>
+      </h3>
+     <table class="table table-bordered">
+     	<tbody>
+     		<tr>
+     			<th scope="row">購入者</th>
+     			<td>
+     				<%= @order.customer.family_name %><%= @order.customer.last_name %>
+     			</td>
+            </tr>
+            <tr>
+                <th scope="row">配送先</th>
+                <td>
+                    〒<%=@order.postal_code %>
+                    <%=@order.address %>
+                    <%=@order.name%>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">支払い方法</th>
+                <td>
+                    <%= @order.payment %>
+                </td>
+            </tr>
