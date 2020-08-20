@@ -1,13 +1,5 @@
 Rails.application.routes.draw do
-
-  # get 'deliveries/index'
-  # get 'deliveries/create'
-  # get 'deliveries/update'
-  # get 'deliveries/destroy'
-  # get 'deliveries/edit'
-  devise_for :hosts, controllers: {
-  sessions: 'hosts/sessions'}
-
+  
   get 'orders/index'
   get 'orders/show'
   get 'orders/edit'
@@ -16,16 +8,14 @@ Rails.application.routes.draw do
     get 'top'=>'items#top'
     resources :items
     resources :genres
+    resources :customers
+    resources :orders
   end
   devise_for :hosts,controllers: {
     registrations: 'hosts/registrations',
     sessions: "hosts/sessions",
      }
-  namespace :host do
-    resources :customers
-    resources :genres
-    resources :orders
-end
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :customers, controllers: {
     sessions: "customers/devise/sessions",
@@ -35,20 +25,17 @@ end
 
   namespace :customers do
     resources :items, only: [:index, :show]
-
+    resources :cart_items, only: [:index, :create, :destroy, :update]
     resources :deliveries, only: [:index, :edit, :create, :update, :destroy]
-
-    get "/:id" => "customers#show"
-    get "/:id/edit" => "customers#edit", as:"edit"
-    patch "/:id" => "customers#update"
     get "/:id/withdraw_confirm" => "customers#withdraw_confirm", as:"withdraw_confirm"
   	patch "/:id/withdraw" => "customers#withdraw", as:"withdraw"
-
-    resources :customers, only: [:show, :edit, :update, :destroy]
-    resources :cart_items, only: [:index, :create, :destroy, :update]
-    get "/:id/withdraw_confirm" => "customers#withdraw_confirm"
-    patch "/:id/withdraw" => "customers#withdraw", as:"customers_withdraw"
+    
     delete "/destroy_all" => "cart_items#destroy_all",as:"destroy_all"
   end
 
+  scope module: 'customers' do
+    resources :customers do
+      resources :deliveries, only: [:index, :edit, :create, :update, :destroy]
+    end
+  end
 end
