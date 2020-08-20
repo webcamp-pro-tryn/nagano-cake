@@ -7,6 +7,8 @@
       <h3>登録情報</h3>
       <%= link_to "編集する", edit_customer_path %>
 
+      "パスワードを変更する"
+
 
       <div class="col-5 ml-3">
         <table class="table table-bordered">
@@ -51,6 +53,8 @@
       <h3>配送先</h3>
       <%= link_to "一覧を見る", customer_deliveries_path(current_customer) %>
       <h3>注文履歴</h3>
+      <%= link_to "一覧を見る", customer_orders_path(current_customer) %>
+
     </div>
   </div>
 </div>

@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   scope module: 'customers' do
     resources :customers do
       resources :deliveries, only: [:index, :edit, :create, :update, :destroy]
+      resources :orders, only: [:index, :show]
     end
   end
 end
