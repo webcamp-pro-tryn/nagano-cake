@@ -12,13 +12,13 @@ class Host::GenresController < ApplicationController
        flash[:notice] = "ジャンルを追加しました"
        redirect_to host_items_path
     else
-      @genres = Genre.all.page(params[:page]).per(10)
-      render :index and return
+      @genres = Genre.all.page
+      render :index
     end
   end
 
   def show
-    @products = Product.all.all.page(params[:page]).per(10)
+    @items = Item.all
     @genre = Genre.find(params[:id])
   end
 
