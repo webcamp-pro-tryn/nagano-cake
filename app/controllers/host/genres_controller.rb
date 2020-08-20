@@ -12,8 +12,9 @@ class Host::GenresController < ApplicationController
        flash[:notice] = "ジャンルを追加しました"
        redirect_to host_items_path
     else
-      @genres = Genre.all.page
-      render :index
+      @genres = Genre.all
+      render :index and return
+
     end
   end
 
