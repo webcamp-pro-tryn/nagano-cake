@@ -18,7 +18,7 @@ class Host::GenresController < ApplicationController
   end
 
   def show
-    @items = Item.all.all
+    @items = Item.all
     @genre = Genre.find(params[:id])
   end
 
