@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  
   get 'orders/new'
   get 'orders/index'
   get 'orders/show'
@@ -18,7 +17,7 @@ Rails.application.routes.draw do
     registrations: 'hosts/registrations',
     sessions: "hosts/sessions",
      }
-  
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :customers, controllers: {
     sessions: "customers/devise/sessions",
@@ -37,7 +36,7 @@ Rails.application.routes.draw do
     resources :deliveries, only: [:index, :edit, :create, :update, :destroy]
     get "/:id/withdraw_confirm" => "customers#withdraw_confirm", as:"withdraw_confirm"
   	patch "/:id/withdraw" => "customers#withdraw", as:"withdraw"
-    
+
     delete "/destroy_all" => "cart_items#destroy_all",as:"destroy_all"
 
     
