@@ -14,6 +14,7 @@ class Host::GenresController < ApplicationController
     else
       @genres = Genre.all
       render :index and return
+
     end
   end
 
