@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2020_08_22_093106) do
-=======
-ActiveRecord::Schema.define(version: 2020_08_20_084045) do
->>>>>>> origin/master
 
   create_table "cart_items", force: :cascade do |t|
     t.datetime "created_at", null: false
