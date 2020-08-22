@@ -10,3 +10,4 @@ Host.create!(
    email: 'test@test',
    password: 'testtest',
 )
+

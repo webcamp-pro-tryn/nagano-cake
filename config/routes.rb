@@ -1,18 +1,11 @@
 Rails.application.routes.draw do
 
-  get 'orders/new'
-  get 'orders/index'
-  get 'orders/show'
-  get 'orders/index'
-  get 'orders/show'
-  get 'orders/edit'
-
   namespace :host do
     get 'top'=>'items#top'
     resources :items
     resources :genres
-    resources :customers
-    resources :orders
+    resources :customers,　only: [:index, :show, :edit, :update]
+    resources :orders, only: [:index, :show, :edit, :edit, :update]
   end
   devise_for :hosts,controllers: {
     registrations: 'hosts/registrations',
@@ -37,7 +30,7 @@ Rails.application.routes.draw do
         get :thanks
       end
     end
-    resources :deliveries, only: [:index, :edit, :create, :update, :destroy]
+    # resources :deliveries, only: [:index, :edit, :create, :update, :destroy]
     get "/:id/withdraw_confirm" => "customers#withdraw_confirm", as:"withdraw_confirm"
   	patch "/:id/withdraw" => "customers#withdraw", as:"withdraw"
 
