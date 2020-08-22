@@ -13,11 +13,12 @@ class Customers::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.save
+    redirect_to confirm_customers_orders_path(current_customer)
   end
 
   def confirm
     @cart_items = CartItem.all
-    @order = Order.find_by(customer_id: current_user.id)
+    @order = Order.find_by(customer_id: current_customer.id)
   end
 
   private

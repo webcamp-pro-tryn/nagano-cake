@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 2020_08_20_084045) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "quantity"
-    t.integer "item_id"
     t.integer "customer_id"
+    t.integer "item_id"
     t.index ["customer_id"], name: "index_cart_items_on_customer_id"
     t.index ["item_id"], name: "index_cart_items_on_item_id"
   end
