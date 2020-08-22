@@ -15,17 +15,16 @@
       </thead>
       <% @order_items.each do |order_item| %>
         <tbody>
-        <%# 商品画像、商品名 %>
-            <td class="align-middle"><div class="item-img-cart"></div><span class="item-name"><%= order_item.item.name %></span></td>
+            <td class="col-md-4"><%= attachment_image_tag(order_item.item, :image, size: "50x50" ) %>
+            <%= order_item.item.name%>
         <%# 単価 %>
-            <td class="align-middle"><%= (order_item.item.non_tax_price * 1.1).floor %></td>
+            <td class="align-middle col-md-1"><%= (order_item.item.non_tax_price * 1.1).floor %></td>
         <%# 数量 %>
-            <td>
+            <td class="align-middle col-md-1">
               <%= order_item.quantity %>
             </td>
             <%# 小計 %>
-            <td><%= (order_item.item.non_tax_price * 1.1).floor * order_item.quantity%></td>
-            <%# 削除ボタン %>
+            <td class="align-middle col-md-1"><%= (order_item.item.non_tax_price * 1.1).floor * order_item.quantity%></td>
         </tbody>
       <% end %>
     </table>
@@ -35,15 +34,15 @@
     <table class="table table-bordered mt-5">
       <thead>
         <tr>
-          <th>送料</th>
+          <th class="bg-light">送料</th>
           <td>800</td>
         </tr>
         <tr>
-          <th>商品合計</th>
+          <th class="bg-light">商品合計</th>
           <td>内容</td>
         </tr> 
         <tr>
-          <th>請求金額</th>
+          <th class="bg-light">請求金額</th>
           <td>内容</td>
         </tr>
       </thead>

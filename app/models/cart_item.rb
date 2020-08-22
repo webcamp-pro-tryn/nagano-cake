@@ -1,5 +1,5 @@
 class CartItem < ApplicationRecord
-  belongs_to :item,dependent: :destroy
+  belongs_to :item
   belongs_to :customer
 
   def total_price
