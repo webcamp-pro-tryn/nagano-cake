@@ -8,7 +8,7 @@
     <%= form_for(@order, url:customers_orders_path, method: :post) do |f| %>
       <%= f.radio_button :payment, :クレジットカード%>
       <%= f.label :クレジットカード %><br>
-      <%= f.radio_button :payment, :銀行振り込み%>
+      <%= f.radio_button :payment, :銀行振込%>
       <%= f.label :銀行振込 %>
   </div>
     
@@ -16,15 +16,15 @@
   <h4><strong>お届け先<strong></h4>
   <%# ご自身の住所 %>
     <div class="ml-5">
-        <%= f.radio_button :address, :my_address %>
-        <%= f.label :ご自身の住所%>
-        <p class="ml-5">current_userの住所</p>
+        <%= radio_button_tag :address, "my_address" %>
+        <%= f.label "address_myaddress", "ご自身の住所"%>
+        <p class="ml-5"><%=current_customer.postal_code + current_customer.address + current_customer.family_name + current_customer.first_name %></p>
     </div>
   <%# 登録済住所 %>
     <div class="ml-5">
-        <%= f.radio_button :address, :select_address %>
+        <%= radio_button_tag :address, "select_address" %>
         <%= f.label :登録住所から選択%><br>
-        <%= f.select :address, ["登録住所"], class:"ml-5"%><br>
+        <%= select_tag :register_address, options_for_select(@deliveries.map do |delivery|[delivery.postal_code + delivery.address + delivery.name] end ), class:"ml-5"%><br>
     </div>
   <%# 新しい住所 %>
     <div class="ml-5">
@@ -37,5 +37,6 @@
         <%= f.submit "確認画面へ進む", class:"btn btn-primary ml-auto"%>
     <% end %>
 
-
+<%= current_customer.first_name %>
+<%= current_customer.id %>
 </div>

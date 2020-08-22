@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 2020_08_22_093106) do
+=======
 ActiveRecord::Schema.define(version: 2020_08_20_084045) do
+>>>>>>> origin/master
 
   create_table "cart_items", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -82,10 +86,13 @@ ActiveRecord::Schema.define(version: 2020_08_20_084045) do
   create_table "order_items", force: :cascade do |t|
     t.integer "order_id"
     t.integer "item_id"
-    t.integer "production_status", default: 0
-    t.integer "sub_price"
+    t.integer "production_status", default: 0, null: false
+    t.integer "quantity", null: false
+    t.integer "sub_price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_order_items_on_item_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
   end
 
   create_table "orders", force: :cascade do |t|
