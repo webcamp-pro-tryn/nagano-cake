@@ -30,8 +30,11 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show]
     resources :cart_items, only: [:index, :create, :destroy, :update]
     resources :orders, only: [:index, :new, :show, :create] do
-      collection do
+      member do
         get :confirm
+      end
+      collection do
+        get :thanks
       end
     end
     resources :deliveries, only: [:index, :edit, :create, :update, :destroy]
@@ -39,8 +42,6 @@ Rails.application.routes.draw do
   	patch "/:id/withdraw" => "customers#withdraw", as:"withdraw"
 
     delete "/destroy_all" => "cart_items#destroy_all",as:"destroy_all"
-
-    
   end
 
   scope module: 'customers' do

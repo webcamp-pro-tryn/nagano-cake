@@ -4,32 +4,60 @@
   </div>
 
 
+<div class="row">
+  <div class="col-md-8">
+    <table class="table table-bordered mt-5">
+      <thead class="thead-light">
+        <th>商品名</th>
+        <th>単価(税込)</th>
+        <th>数量</th>
+        <th>小計</th>
+      </thead>
+      <% @order_items.each do |order_item| %>
+        <tbody>
+        <%# 商品画像、商品名 %>
+            <td class="align-middle"><div class="item-img-cart"></div><span class="item-name"><%= order_item.item.name %></span></td>
+        <%# 単価 %>
+            <td class="align-middle"><%= (order_item.item.non_tax_price * 1.1).floor %></td>
+        <%# 数量 %>
+            <td>
+              <%= order_item.quantity %>
+            </td>
+            <%# 小計 %>
+            <td><%= (order_item.item.non_tax_price * 1.1).floor * order_item.quantity%></td>
+            <%# 削除ボタン %>
+        </tbody>
+      <% end %>
+    </table>
+  </div>
 
-  <table class="table table-bordered mt-5">
-    <thead class="thead-light">
-      <th>商品名</th>
-      <th>単価(税込)</th>
-      <th>数量</th>
-      <th>小計</th>
-    </thead>
-   <% @cart_items.each do |cart_item| %>
-      <tbody>
-      <%# 商品画像、商品名 %>
-          <td class="align-middle"><div class="item-img-cart"></div><span class="item-name"><%= cart_item.item.name %></span></td>
-      <%# 単価 %>
-          <td class="align-middle"><%= (cart_item.item.non_tax_price * 1.1).floor %></td>
-      <%# 数量 %>
-          <td>
-            <%= cart_item.quantity %>
-          </td>
-          <%# 小計 %>
-          <td><%= (cart_item.item.non_tax_price * 1.1).floor * cart_item.quantity%></td>
-          <%# 削除ボタン %>
-      </tbody>
-    <% end %>
-  </table>
-
-  <div class="row">
-    <h4>支払い方法</h4>
-    <%= @order.payment %>
+  <div class="col-md-4">
+    <table class="table table-bordered mt-5">
+      <thead>
+        <tr>
+          <th>送料</th>
+          <td>800</td>
+        </tr>
+        <tr>
+          <th>商品合計</th>
+          <td>内容</td>
+        </tr> 
+        <tr>
+          <th>請求金額</th>
+          <td>内容</td>
+        </tr>
+      </thead>
+    </table>
+  </div>
+</div>
     
+
+  <h4>支払い方法</h4>
+	<p><%= @order.payment %></p>
+
+<h4>お届け先</h4>
+	<p>〒<%= @order.postal_code %>
+	<%= @order.address %>
+	<%= @order.name %> 様</p>
+
+<%= link_to "購入を確定する", thanks_customers_orders_path, class: "btn btn-danger"%>

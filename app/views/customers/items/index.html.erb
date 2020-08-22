@@ -13,7 +13,7 @@
     <div class="col-md-3">
     <%# 商品画像 %>
       <%= link_to customers_item_path(item) do %>
-        <div class="item-img"></div>
+         <%= attachment_image_tag( item, :image, size: "150x150" ) %><br>
       <% end %>
       <%# 商品名 %>
       <%= item.name %><br>
