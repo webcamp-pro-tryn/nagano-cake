@@ -1,4 +1,5 @@
 class Host::ItemsController < ApplicationController
+	before_action :authenticate_host!
 
 	before_action :set_genres, only: [:new, :edit, :index, :create, :update]
 
