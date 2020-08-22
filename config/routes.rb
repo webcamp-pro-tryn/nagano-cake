@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
 
-  get 'orders/new'
-  get 'orders/index'
-  get 'orders/show'
-  get 'orders/index'
-  get 'orders/show'
-  get 'orders/edit'
+  # get 'orders/new'
+  # get 'orders/index'
+  # get 'orders/show'
+  # get 'orders/index'
+  # get 'orders/show'
+  # get 'orders/edit'
+  get 'homes/top' => 'homes#top'
 
   namespace :host do
     get 'top'=>'items#top'
@@ -34,7 +35,7 @@ Rails.application.routes.draw do
         get :confirm
       end
     end
-    resources :deliveries, only: [:index, :edit, :create, :update, :destroy]
+    # resources :deliveries, only: [:index, :edit, :create, :update, :destroy]
     get "/:id/withdraw_confirm" => "customers#withdraw_confirm", as:"withdraw_confirm"
   	patch "/:id/withdraw" => "customers#withdraw", as:"withdraw"
 

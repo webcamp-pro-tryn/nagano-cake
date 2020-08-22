@@ -1,36 +1,45 @@
 <div class="container">
   <div class="row">
-	<div class="col-md-9">
+	<div class="col-md-10">
 	  	<h2 class="mt-5 d-inline-block">配送先登録/一覧</h2>
 
 		  	<%= form_for(@delivery, url: customer_deliveries_path) do |f| %>
-			  	<h4>郵便番号（ハイフンなし）</h4>
-			  	<%= f.text_field :postal_code %>
-			  	<h4>住所</h4>
-			  	<%= f.text_field :address %>
-			  	<h4>宛名</h4>
-			  	<%= f.text_field :name %>
-			  	<%= f.submit '登録する' %>
+			  <div class="row">
+			  	<div class="col-sm-4"><h5>郵便番号（ハイフンなし）</h5></div>
+			  	<div class="col-sm-6 mr-sm"><%= f.text_field :postal_code %></div>
+			  </div>
+			  <div class="row">
+				<div class="col-sm-4"><h5>住所</h5></div>
+				<div class="col-sm-8 mr-sm"><%= f.text_field :address %></div>
+			  </div>
+			  <div class="row">
+			  	<div class="col-sm-4"><h5>宛名</h5></div>
+				<div class="col-sm-6 mr-sm"><%= f.text_field :name %></div>
+			  	<%= f.submit '登録する',class: "btn btn-success" %></div>
 			 <% end %> 
 
-			<% @deliveries.each do |delivery| %>
 			<table class="table table-bordered">
-				<tr>
-					<th>郵便番号（ハイフンなし）</th>
+				<thead class="thead-light">
+				  <tr>
+					<th>郵便番号</th>
 					<th>住所</th>
 					<th>宛名</th>
 					<th></th>
-				</tr>		
-				<tr>
-					<td><%= delivery.postal_code %></td>
-					<td><%= delivery.address %></td>
-					<td><%= delivery.name %></td>
-					<td><%= link_to "編集する", edit_customer_delivery_path(current_customer.id, delivery.id) %>
-						<%= link_to "削除する",customer_delivery_path(current_customer.id, delivery.id), method: :delete,"data-confirm" => "本当に削除しますか？" %>
-					</td>
-				</tr>
+				  </tr>
+				</thead>
+
+				<% @deliveries.each do |delivery| %>
+				<tbody>
+				　<tr>
+					<td class="align-middle"><%= delivery.postal_code %></td>
+					<td class="align-middle"><%= delivery.address %></td>
+					<td class="align-middle"><%= delivery.name %></td>
+					<td class="align-middle"><%= link_to "編集する", edit_customer_delivery_path(current_customer, delivery.id), class: "btn btn-primary" %>
+					<%= link_to "削除する", customer_delivery_path(current_customer.id, delivery.id),class: "btn btn-danger", method: :delete,"data-confirm" => "本当に削除しますか？" %></td>
+				　</tr>
+				</tbody>
+				<% end %>
 			</table>
-			<% end %>
 
 	</div>
   </div>
