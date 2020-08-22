@@ -5,11 +5,21 @@
 
 		<%= form_for(@delivery, url: customer_delivery_path) do |f| %>
 
-  		    <p><h4>郵便番号</h4><%= f.text_field :postal_code, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"郵便番号"%></p>
-		    <p><h4>住所</h4><%= f.text_field :address, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"住所"%></p>
-           	<p><h4>宛名</h4><%= f.text_field :name, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"宛名"%></p>
-           	<%= f.submit "編集する", class:"btn btn-lg btn-block btn-base-1 mt-20" %>
+  		    <form class="form-inline">
+            <h4>郵便番号（ハイフンなし）</h4><div class="col-3"><%= f.text_field :postal_code, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"郵便番号"%></div>
+		      </form>
+          <p><h4>住所</h4>
+            <div class="col-8"><%= f.text_field :address, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"住所"%></p></div>
+          <p><h4>宛名</h4>
+            <div class="col-3"><%= f.text_field :name, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"宛名"%></p>
+            <%= f.submit "編集する", class:"btn btn-lg btn-primary" %></div>
   		<% end %>
 	</div>
   </div>
 </div>
+
+
+ <!--      <div class="row">
+        <div class="col-sm-4"><h5>住所</h5></div>
+        <div class="col-sm-8 mr-sm"><%#= f.text_field :address %></div>
+        </div> -->

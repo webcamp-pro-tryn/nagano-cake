@@ -1,4 +1,5 @@
 class Host::CustomersController < ApplicationController
+  #before_action :authenticate_host!　ホストのみ機能を使える
   def index
   	@customers = Customer.all
   end

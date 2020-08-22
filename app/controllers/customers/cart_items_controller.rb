@@ -1,11 +1,20 @@
 class Customers::CartItemsController < ApplicationController
   def index
-    @cart_items = CartItem.all
+    @cart_items = CartItem.where(customer_id: current_customer.id)
   end
 
   def create
-    @cart_item = CartItem.create(cart_item_params)
-    # @cart_item.customer_id = current_customer.id
+    @cart_item = current_customer.cart_items.create(cart_item_params)
+    @cart_items = current_customer.cart_items.all
+    
+    # カート内に既に同じ商品がある時は数量だけ増やす
+    @cart_items.each do |cart_item|
+      if cart_item.item.id == @cart_item.item.id
+        new_quantity = cart_item.quantity + @cart_item.quantity
+        cart_item.update_attribute(:quantity, new_quantity)
+        @cart_item.delete
+      end
+    end
     @cart_item.save
     redirect_to customers_cart_items_path
   end
