@@ -10,16 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_19_121604) do
+ActiveRecord::Schema.define(version: 2020_08_20_110740) do
 
   create_table "cart_items", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "quantity"
-    t.integer "item_id"
     t.integer "customer_id"
     t.index ["customer_id"], name: "index_cart_items_on_customer_id"
-    t.index ["item_id"], name: "index_cart_items_on_item_id"
   end
 
   create_table "customers", force: :cascade do |t|
