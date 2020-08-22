@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <h3 class="px-5 mt-5 bg-light">注文情報確認</h3>
+  </div>
+
+
+
+  <table class="table table-bordered mt-5">
+    <thead class="thead-light">
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>数量</th>
+      <th>小計</th>
+    </thead>
+   <% @cart_items.each do |cart_item| %>
+      <tbody>
+      <%# 商品画像、商品名 %>
+          <td class="align-middle"><div class="item-img-cart"></div><span class="item-name"><%= cart_item.item.name %></span></td>
+      <%# 単価 %>
+          <td class="align-middle"><%= (cart_item.item.non_tax_price * 1.1).floor %></td>
+      <%# 数量 %>
+          <td>
+            <%= cart_item.quantity %>
+          </td>
+          <%# 小計 %>
+          <td><%= (cart_item.item.non_tax_price * 1.1).floor * cart_item.quantity%></td>
+          <%# 削除ボタン %>
+      </tbody>
+    <% end %>
+  </table>
+
+  <div class="row">
+    <h4>支払い方法</h4>
+    <%= @order.payment %>
+    

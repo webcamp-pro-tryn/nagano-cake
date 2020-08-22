@@ -14,11 +14,12 @@ class Host::GenresController < ApplicationController
     else
       @genres = Genre.all
       render :index and return
+
     end
   end
 
   def show
-    @items = Item.all.all
+    @items = Item.all
     @genre = Genre.find(params[:id])
   end
 
