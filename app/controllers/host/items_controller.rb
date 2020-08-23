@@ -13,7 +13,7 @@ class Host::ItemsController < ApplicationController
 	def create
 		@item = Item.new(item_params)
 		@item.save
-		redirect_to host_item_path(@item)
+		redirect_to host_item_path(@item.id)
 	end
 
 	def index
