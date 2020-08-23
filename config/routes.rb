@@ -4,8 +4,8 @@ Rails.application.routes.draw do
     get 'top'=>'items#top'
     resources :items
     resources :genres
-    resources :customers,　only: [:index, :show, :edit, :update]
-    resources :orders, only: [:index, :show, :edit, :edit, :update]
+    resources :customers#,　only: [:index, :show, :edit, :update]
+    resources :orders, only: [:index, :show, :edit, :update]
   end
   devise_for :hosts,controllers: {
     registrations: 'hosts/registrations',

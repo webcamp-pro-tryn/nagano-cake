@@ -1,47 +1,41 @@
-<div class="container">
-    	<div class="row">
-    		<div class="col-xs-2">
-    	</div>
-    <div class="col-xs-8">
-      <h3 class="customer-title-show">
-    	<strong>注文詳細
-    	</strong>
-      </h3>
-     <table class="table table-bordered">
-     	<tbody>
-     		<tr>
-     			<th scope="row">購入者</th>
-     			<td>
-     				<%= @order.customer.family_name %><%= @order.customer.last_name %>
-     			</td>
-            </tr>
-            <tr>
-                <th scope="row">配送先</th>
-                <td>
-                    〒<%=@order.postal_code %>
-                    <%=@order.address %>
-                    <%=@order.name%>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">支払い方法</th>
-                <td>
-                    <%= @order.payment %>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">注文ステータス</th>
-                <td>
-                        <%= form_with model: [:host, @order] do |f| %>
-                          <%= f.select  :order_status, Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]} %>
-                          <% end %>
-                          <%= f.submit "更新", class: "btn btn-primary"  %>
-                        <% end %>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <h2 class="head-line title_h2 text-center">注文履歴詳細
+    </h2>
 
+    <div class ="row">
+     	<h4 class ="sub-title col-xs-2">購入者</h4>
+        <p class ="order-info col-xs-10">
+     				<%=link_to "#{@order.customer.family_name}#{@order.customer.first_name}", host_customer_path(@order.customer) %>
+     	</p>
+    </div>
+   
+    <div class ="row">
+        <h4 class ="sub-title col-xs-2">配送先</h4>
+        <p class ="order-info col-xs-10">
+             〒<%=@order.postal_code %>
+            　　<%=@order.address %>
+                <%=@order.name%>
+        </p>
+    </div>
+
+    <div class ="row">
+        <h4 class ="sub-title col-xs-2">支払い方法</h4>
+        <p class ="order-info col-xs-10">
+            <%= @order.payment_i18n %>
+        </p>
+    </div>
+
+    <div class ="row">
+        <h4 class ="sub-title col-xs-2">注文ステータス</h4>
+        <div class ="order-info col-xs-10">
+             <%= form_with model: [:host, @order] do |f| %>
+                <%= f.select  :order_status, Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]} %>
+             <%= f.submit "更新", class: "btn btn-primary"  %>
+            <% end %>
+        </div>
+    </div>
+     
+     <div class ="row">
+        <div class ="order_item_info col-xs-8">
      <table class="table table-hover table-bordered table-condensed">
         <thead>
           <tr class="info">
@@ -52,7 +46,8 @@
           </tr>
         </thead>
         <tbody>
-            <% @orders.order_items.each do |order| %>
+            <% item_total_price = 0 %>
+            <% @order.order_items.each do |order| %>
             <tr>
                 <td><%= order.item.name %></td>
                 <td><%= order.item.sub_price.to_s(:delimited) %></td>
@@ -61,8 +56,8 @@
                 <td>
                     <%= form_with model: [:host, @order] do |f| %>
                     <%= f.select  :production_status, Order_item.production_statuses.keys.map {|k| [I18n.t("enums.order_item.production_status.#{k}"), k]} %>
-                    <% end %>
                     <%= f.submit "更新", class: "btn btn-primary" %>
+                    <% end %>
                 </td>
             </tr>
             <% item_total_price += order.sub_price * order.item_count %>
@@ -75,21 +70,16 @@
         <div class="bottom">
             <strong class ="col-xs-7">商品合計</strong>
             <p class ="col-xs-5 text-rigth">
-                <%= "#{item_total_price.to_s(:delimited)}円"　%>
+                <%= "#{item_total_price.to_s(:delimited)}円" %>
             </p>
             <strong class ="col-xs-7">送料</strong>
             <p class ="col-xs-5 text-rigth">
-                <%= "#{@order.postage.to_s(:delimited)}円"　%>
+                <%= "#{@order.postage.to_s(:delimited)}円" %>
             </p>
             <strong class ="col-xs-7">請求金額合計</strong>
             <strong class ="col-xs-5 text-rigth">
-                <%= @order.price.to_s(:delimited) %>円
+                 <%= "#{@order.price}円" %>
             </strong>
         </div>
     </div>
 </div>
-
-
-
-
-
