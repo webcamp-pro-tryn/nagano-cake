@@ -6,13 +6,14 @@
 		<%= form_for(@delivery, url: customer_delivery_path) do |f| %>
 
   		    <form class="form-inline">
-            <h4>郵便番号（ハイフンなし）</h4><div class="col-3"><%= f.text_field :postal_code, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"郵便番号"%></div>
-		      </form>
+            <h4>郵便番号（ハイフンなし）</h4><div class="col-3 "><%= f.text_field :postal_code, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"郵便番号"%></div>
+		      
           <p><h4>住所</h4>
             <div class="col-8"><%= f.text_field :address, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"住所"%></p></div>
           <p><h4>宛名</h4>
             <div class="col-3"><%= f.text_field :name, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"宛名"%></p>
             <%= f.submit "編集する", class:"btn btn-lg btn-primary" %></div>
+            </form>
   		<% end %>
 	</div>
   </div>

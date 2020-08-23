@@ -5,8 +5,7 @@ class Customers::OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.all
-    
+    @orders = current_customer.orders
   end
 
   def show
@@ -23,7 +22,7 @@ class Customers::OrdersController < ApplicationController
       @order.address = current_customer.address
       @order.save
     elsif params[:address] == "select_address"
-      byebug
+      # byebug
 
     end
     @cart_items = current_customer.cart_items.all
@@ -35,9 +34,8 @@ class Customers::OrdersController < ApplicationController
       @order_item.quantity = cart_item.quantity
       @order_item.sub_price = cart_item.item.non_tax_price
       @order_item.save
+      # byebug
     end
-
-      
 
     redirect_to  confirm_customers_order_path(@order)
   end
@@ -56,4 +54,5 @@ class Customers::OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:payment, :name, :postal_code, :address)
   end
+
 end
