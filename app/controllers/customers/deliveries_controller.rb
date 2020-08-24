@@ -21,7 +21,6 @@ class Customers::DeliveriesController < ApplicationController
   def edit
     @delivery = Delivery.find(params[:id])
     @delivery.customer_id = current_customer.id
-    redirect_to customer_deliveries_path(current_customer)
   end
 
   def update

@@ -1,23 +1,22 @@
 ja:
-  enum:
+  enums:
     order:
+      payment:
+        credit: "クレジット決済"
+        cash: "現金支払い"
       order_status:
         waiting: "入金待ち"
         check: "入金確認"
         maiking: "製作中"
         preparation: "発送準備中"
         complete: "発送済み"
-ja:
-  enum:
-    order:
-      payment:
-        credit: "クレジット決済"
-        cach: "現金支払い"
-ja:
-  enum:
     order_item:
       production_status:
         no_avalable: "制作不可"
         waiting: "制作待ち"
         maiking: "製作中"
         complate: "制作完了"
+ja:
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"

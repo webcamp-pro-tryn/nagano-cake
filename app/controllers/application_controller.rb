@@ -21,8 +21,20 @@ class ApplicationController < ActionController::Base
 	end
 
 	def after_sign_out_path_for(resource)
-		new_customer_session_path
+		homes_top_path
 	end
+
+
+	# def after_update_path_for(resource)
+	# 	customers_path(current_customer)
+	# end
+	# def account_update(resource, params)
+ #    	redirect to customers_path(current_customer)
+ #  	end
+
+	# def after_resetting_password_path_for(resource)
+ #    	customers_path(current_customer)
+ #    end
 
 	def configure_permitted_parameters
 		devise_parameter_sanitizer.permit(:sign_up, keys: [:family_name, :first_name, :family_name_kana, :first_name_kana, :postal_code, :address, :phone_number, :is_deleted])

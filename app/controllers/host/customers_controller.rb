@@ -1,7 +1,8 @@
 class Host::CustomersController < ApplicationController
   #before_action :authenticate_host!　ホストのみ機能を使える
   def index
-  	@customers = Customer.all
+  	@customers = Customer.page(params[:page])
+
   end
 
   def show
@@ -15,6 +16,7 @@ class Host::CustomersController < ApplicationController
   def update
   	@customer = Customer.find(params[:id])
   	if @customer.update(params_customer)
+       flash[:success] = "会員情報が更新されました"
   		redirect_to host_customer_path(@customer)
   	else
   		render 'edit'
@@ -30,7 +32,8 @@ class Host::CustomersController < ApplicationController
   		:postal_code,
   		:address,
   		:phone_number,
-  		:email
+  		:email,
+      :is_deleted
       )
   end
 end

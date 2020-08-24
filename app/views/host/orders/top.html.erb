@@ -1,0 +1,12 @@
+<div class="row">
+	<div class="col-xs-12">
+		<h2 class="head-line title_h2 text-center">管理者画面</h2>
+		<div class ="today-order">
+		<p class="order-count">本日の注文件数
+			<span>
+				<%= link_to @orders.count, host_orders_today_index_path %>
+				件
+			</span>
+		</p>
+	</div>
+</div>

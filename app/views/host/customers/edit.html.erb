@@ -1,12 +1,9 @@
 <div class="container">
     	<div class="row">
-    		<div class="col-xs-2">
-    	</div>
-    <div class="col-xs-8">
-      <h3 class="customer-title-show">
-    	<strong><%= @customer.family_name%><%= @customer.first_name %>の会員編集
-    	</strong>
-      </h3>
+    		<div class="col-xs-12">
+     <h2 class="head-line title_h2 text-center">
+    	<%= @customer.family_name%><%= @customer.first_name %>の会員編集
+    </h2>
     <div class="form-horizontal" role="form">
     	 <%= form_for(@customer, url: host_customer_path, method: :patch) do |f| %>
 
@@ -53,10 +50,10 @@
     	 <div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
 			<div class="checkbox">
-				<%= radio_button_tag :is_delete, :true %>
-				<%= f.label :is_delete,"有効",{value: :true, style: "display :inline-block;",} %>
-				<%= radio_button_tag :is_active, :false %>
-                <%= f.label :is_active,"退会済み", {value: :false, style: "display :inline-block;"} %>
+				<%= f.radio_button :is_deleted, :true %>
+				<%= f.label :is_deleted,"有効",{value: :true, style: "display :inline-block;",} %>
+				<%= f.radio_button :is_deleted, :false %>
+                <%= f.label :is_deleted,"退会済み", {value: :false, style: "display :inline-block;"} %>
 			</div>
 			 <div class="submit">
             <%= f.submit "変更を保存する" , class:"btn btn-info" %>

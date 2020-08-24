@@ -34,7 +34,7 @@
 					<td class="align-middle"><%= delivery.postal_code %></td>
 					<td class="align-middle"><%= delivery.address %></td>
 					<td class="align-middle"><%= delivery.name %></td>
-					<td class="align-middle"><%= link_to "編集する", edit_customer_delivery_path(current_customer, delivery.id), class: "btn btn-primary" %>
+					<td class="align-middle"><%= link_to "編集する",edit_customer_delivery_path(current_customer.id, delivery.id), class: "btn btn-primary" %>
 					<%= link_to "削除する", customer_delivery_path(current_customer.id, delivery.id),class: "btn btn-danger", method: :delete,"data-confirm" => "本当に削除しますか？" %></td>
 				　</tr>
 				</tbody>

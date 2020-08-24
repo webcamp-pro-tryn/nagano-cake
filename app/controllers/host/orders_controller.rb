@@ -1,12 +1,27 @@
 class Host::OrdersController < ApplicationController
 	before_action :authenticate_host!
+
+  def top
+    range = Date.today.beginning_of_day..Date.today.end_of_day
+    @orders = Order.where(created_at: range)
+  end
+
+  def today_index
+    range = Date.today.beginning_of_day..Date.today.end_of_day
+    @orders = Order.where(created_at: range)
+    @orders = @orders.page(params[:page])
+  end
+
+
   def index
-  	@orders = Order.all
+  	@orders = Order.page(params[:page]).reverse_order
   end
 
   def show
   	@order = Order.find(params[:id])
+    @order_items = @order.order_items.where(params[:id])
   end
+
 
   def edit
   	@order = Order.find(params[:id])
@@ -14,10 +29,14 @@ class Host::OrdersController < ApplicationController
 
   def update
   	@order = Order.find(params[:id])
-  	@order.update(order_params)
-    redirect_to host_order_path(order.id)
+  	  if @order.update(order_params)
+      flash[:success] = "ステータスが更新されました"
+    redirect_to host_order_path(@order.id)
+      else 
+        render 'show'
+      end
   end
-   
+  
    private
 	def order_params
 		params.require(:order).permit(
@@ -26,6 +45,7 @@ class Host::OrdersController < ApplicationController
 			:name,
 			:postal_code,
 			:price,
+      :order_status
 			)
 	end
 end
