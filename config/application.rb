@@ -17,5 +17,7 @@ module NaganoCake
     # the framework and any gems in your application.
     config.i18n.default_locale = :ja # enumのデフォルトを日本語にする
     config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s] #パスを通して、i18nのロケールファイルが読み込まれるようにする。
+    # タイムゾーンを日本時間に設定
+    config.time_zone = 'Asia/Tokyo'
   end
 end
