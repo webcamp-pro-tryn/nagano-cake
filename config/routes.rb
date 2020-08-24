@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'homes/top' => 'homes#top'
+  get 'homes/about' => 'homes#about'
 
   namespace :host do
     get 'top'=>'orders#top'
@@ -18,7 +20,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :customers, controllers: {
     sessions: "customers/devise/sessions",
-    passwords: "customers/devise/passwords",
+    # passwords: "customers/devise/passwords",
     registrations: "customers/devise/registrations"
   }
 
@@ -43,7 +45,7 @@ Rails.application.routes.draw do
   scope module: 'customers' do
     resources :customers do
       resources :deliveries, only: [:index, :edit, :create, :update, :destroy]
-      resources :orders, only: [:index, :show]
+      # resources :orders, only: [:index, :show]
     end
   end
 end
