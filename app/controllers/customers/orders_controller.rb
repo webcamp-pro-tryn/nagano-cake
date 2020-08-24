@@ -1,4 +1,6 @@
 class Customers::OrdersController < ApplicationController
+  before_action :authenticate_customer!
+
   def new
     @order = Order.new
     @deliveries = current_customer.deliveries.all
@@ -24,13 +26,11 @@ class Customers::OrdersController < ApplicationController
       @order.save
     # 登録済住所
     elsif params[:address] == "select_address"
-<<<<<<< HEAD
       address = Delivery.find(params[:order][:id])
       @order.name = address.name
       @order.postal_code = address.postal_code
       @order.address = address.address
       @order.save
-=======
     end
     @cart_items = current_customer.cart_items.all
 
@@ -41,9 +41,15 @@ class Customers::OrdersController < ApplicationController
       @order_item.quantity = cart_item.quantity
       @order_item.sub_price = cart_item.item.non_tax_price
       @order_item.save
-      # byebug
     end
 
+    # 商品の合計金額をorder.priceに入れる
+    items = @order.order_items
+    @order.price = 0
+    items.each do |item|
+      @order.price += (item.sub_price * 1.1).floor * item.quantity
+    end
+    @order.save
     redirect_to  confirm_customers_order_path(@order)
   end
 

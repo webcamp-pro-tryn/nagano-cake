@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_22_093106) do
+ActiveRecord::Schema.define(version: 2020_08_24_090440) do
 
   create_table "cart_items", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "quantity"
+    t.integer "quantity", null: false
     t.integer "customer_id"
     t.integer "item_id"
     t.index ["customer_id"], name: "index_cart_items_on_customer_id"
@@ -70,13 +70,13 @@ ActiveRecord::Schema.define(version: 2020_08_22_093106) do
 
   create_table "items", force: :cascade do |t|
     t.integer "genre_id"
-    t.string "name"
+    t.string "name", null: false
     t.text "description"
-    t.integer "non_tax_price"
+    t.integer "non_tax_price", null: false
     t.string "image_id"
-    t.boolean "is_active"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean "is_active", default: true, null: false
+    t.index ["genre_id"], name: "index_items_on_genre_id"
+    t.index ["name"], name: "index_items_on_name"
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -94,14 +94,15 @@ ActiveRecord::Schema.define(version: 2020_08_22_093106) do
   create_table "orders", force: :cascade do |t|
     t.integer "customer_id"
     t.integer "postage", default: 800
-    t.string "name"
-    t.string "postal_code"
-    t.string "address"
+    t.string "name", null: false
+    t.string "postal_code", null: false
+    t.string "address", null: false
     t.integer "payment", default: 0
-    t.integer "order_status"
-    t.integer "price"
+    t.integer "order_status", default: 0
+    t.integer "price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 
 end
