@@ -24,13 +24,11 @@ class Customers::OrdersController < ApplicationController
       @order.save
     # 登録済住所
     elsif params[:address] == "select_address"
-<<<<<<< HEAD
       address = Delivery.find(params[:order][:id])
       @order.name = address.name
       @order.postal_code = address.postal_code
       @order.address = address.address
       @order.save
-=======
     end
     @cart_items = current_customer.cart_items.all
 
