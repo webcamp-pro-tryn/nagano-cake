@@ -16,14 +16,21 @@ class Customers::OrdersController < ApplicationController
   def create
     @order = current_customer.orders.new(order_params)
     @order.save
+    # ご自身の住所
     if params[:address] == "my_address"
       @order.name = current_customer.family_name + current_customer.first_name
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
       @order.save
+    # 登録済住所
     elsif params[:address] == "select_address"
-      # byebug
-
+<<<<<<< HEAD
+      address = Delivery.find(params[:order][:id])
+      @order.name = address.name
+      @order.postal_code = address.postal_code
+      @order.address = address.address
+      @order.save
+=======
     end
     @cart_items = current_customer.cart_items.all
 
