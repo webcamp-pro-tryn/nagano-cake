@@ -46,23 +46,25 @@
           </tr>
         </thead>
         <tbody>
-            <% item_total_price = 0 %>
+            <% sum = 0 %>
             <% @order.order_items.each do |order| %>
             <tr>
-                <td><%= order.item.name %></td>
-                <td><%= order.item.sub_price.to_s(:delimited) %></td>
-                <td><%= order.item.count　%></td>
-                <td><%= (order.sub_price * order.item_count).to_s(:delimited) %></td>
+                <td><%= order.items.name %></td>
+                <td><%= order.sub_price %></td>
+                <td><%= order.quantity　%></td>
+                    <% sub_total = order.sub_price * order.quantity %>
+                    <% sum += sub_total %>
+                <td><%= sub_total %></td>
                 <td>
-                    <%= form_with model: [:host, @order] do |f| %>
+                    <%= form_with model: [:host, order] do |f| %>
                     <%= f.select  :production_status, Order_item.production_statuses.keys.map {|k| [I18n.t("enums.order_item.production_status.#{k}"), k]} %>
                     <%= f.submit "更新", class: "btn btn-primary" %>
                     <% end %>
                 </td>
             </tr>
-            <% item_total_price += order.sub_price * order.item_count %>
-            <% end %>
         </tbody>
+        <% @total = @total + order.sub_price * order.quantity %>
+        <% end %>
     </table>
 </div>
 
@@ -70,15 +72,15 @@
         <div class="bottom">
             <strong class ="col-xs-7">商品合計</strong>
             <p class ="col-xs-5 text-rigth">
-                <%= "#{item_total_price.to_s(:delimited)}円" %>
+                <%= sum %>円
             </p>
             <strong class ="col-xs-7">送料</strong>
             <p class ="col-xs-5 text-rigth">
-                <%= "#{@order.postage.to_s(:delimited)}円" %>
+                <%= @order.postage %>円
             </p>
             <strong class ="col-xs-7">請求金額合計</strong>
             <strong class ="col-xs-5 text-rigth">
-                 <%= "#{@order.price}円" %>
+                <%= sum  + @order.postage %>円
             </strong>
         </div>
     </div>
