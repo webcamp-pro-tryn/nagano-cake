@@ -9,7 +9,7 @@
       <table class="table table-bordered">
         <tr>
           <th>注文日</th>
-          <td><%= @order.created_at %></td>
+          <td><%= l @order.created_at %></td>
         </tr>
         <tr>
           <th>配達先</th>
@@ -61,7 +61,7 @@
           <th>小計</th>
         </thead>
         <tbody>
-          <%= @order_items.each do |order_item| %>
+          <% @order_items.each do |order_item| %>
             <tr>
               <td><%= order_item.item.name %></td>
               <td><%= order_item.item.non_tax_price %></td>

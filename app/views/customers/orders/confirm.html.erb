@@ -13,6 +13,7 @@
         <th>数量</th>
         <th>小計</th>
       </thead>
+      <% total = 0 %>
       <% @order_items.each do |order_item| %>
         <tbody>
             <td class="col-md-4"><%= attachment_image_tag(order_item.item, :image, size: "50x50" ) %>
@@ -24,7 +25,9 @@
               <%= order_item.quantity %>
             </td>
             <%# 小計 %>
-            <td class="align-middle col-md-1"><%= (order_item.item.non_tax_price * 1.1).floor * order_item.quantity%></td>
+            <% price = (order_item.item.non_tax_price * 1.1).floor * order_item.quantity %>
+            <% total = price + total %>
+            <td class="align-middle col-md-1"><%= price %></td>
         </tbody>
       <% end %>
     </table>
@@ -39,11 +42,11 @@
         </tr>
         <tr>
           <th class="bg-light">商品合計</th>
-          <td>内容</td>
+          <td><%= total %></td>
         </tr> 
         <tr>
           <th class="bg-light">請求金額</th>
-          <td>内容</td>
+          <td><%= total + 800 %></td>
         </tr>
       </thead>
     </table>
