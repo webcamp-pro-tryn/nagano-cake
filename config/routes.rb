@@ -2,12 +2,15 @@ Rails.application.routes.draw do
 
   get 'homes/top' => 'homes#top'
   get 'homes/about' => 'homes#about'
+
   namespace :host do
-    get 'top'=>'items#top'
+    get 'top'=>'orders#top'
     resources :items
     resources :genres
     resources :customers#,　only: [:index, :show, :edit, :update]
+    get 'orders/today_index' => 'orders#today_index'
     resources :orders, only: [:index, :show, :edit, :update]
+    resources :order_items, only:[:update]
   end
   devise_for :hosts,controllers: {
     registrations: 'hosts/registrations',
