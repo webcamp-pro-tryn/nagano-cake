@@ -19,6 +19,7 @@ class Host::OrdersController < ApplicationController
 
   def show
   	@order = Order.find(params[:id])
+    @order_items = @order.order_items.where(params[:id])
   end
 
 
@@ -27,10 +28,13 @@ class Host::OrdersController < ApplicationController
   end
 
   def update
-  	order = Order.find(params[:id])
-  	  order.update(order_params)
-      flash[:notice] = "ステータスが更新されました"
-    redirect_to host_order_path(order.id)
+  	@order = Order.find(params[:id])
+  	  if @order.update(order_params)
+      flash[:success] = "ステータスが更新されました"
+    redirect_to host_order_path(@order.id)
+      else 
+        render 'show'
+      end
   end
   
    private
@@ -41,6 +45,7 @@ class Host::OrdersController < ApplicationController
 			:name,
 			:postal_code,
 			:price,
+      :order_status
 			)
 	end
 end

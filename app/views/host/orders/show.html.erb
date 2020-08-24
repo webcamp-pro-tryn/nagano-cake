@@ -27,7 +27,7 @@
     <div class ="row">
         <h4 class ="sub-title col-xs-2">注文ステータス</h4>
         <div class ="order-info col-xs-10">
-             <%= form_with model: [:host, @order] do |f| %>
+             <%= form_with model: @order, local: true, url: host_order_path(@order.id), method: :patch  do |f| %>
                 <%= f.select  :order_status, Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]} %>
              <%= f.submit "更新", class: "btn btn-primary"  %>
             <% end %>
@@ -42,28 +42,28 @@
             <th>商品名</th>
             <th>単価（税込）</th>
             <th>数量</th>
+            <th>小計</th>
             <th>制作ステータス</th>
           </tr>
         </thead>
         <tbody>
             <% sum = 0 %>
-            <% @order.order_items.each do |order| %>
+            <% @order_items.each do |order| %>
             <tr>
-                <td><%= order.items.name %></td>
+                <td><%= order.item.name %></td>
                 <td><%= order.sub_price %></td>
-                <td><%= order.quantity　%></td>
+                 <td><%= order.quantity %></td>
                     <% sub_total = order.sub_price * order.quantity %>
                     <% sum += sub_total %>
                 <td><%= sub_total %></td>
                 <td>
-                    <%= form_with model: [:host, order] do |f| %>
-                    <%= f.select  :production_status, Order_item.production_statuses.keys.map {|k| [I18n.t("enums.order_item.production_status.#{k}"), k]} %>
+                    <%= form_with model: order, local: true, url: host_order_item_path(order.id), method: :patch do |f| %>
+                    <%= f.select  :production_status, OrderItem.production_statuses.keys.map {|k| [I18n.t("enums.order_item.production_status.#{k}"), k]} %>
                     <%= f.submit "更新", class: "btn btn-primary" %>
                     <% end %>
                 </td>
             </tr>
         </tbody>
-        <% @total = @total + order.sub_price * order.quantity %>
         <% end %>
     </table>
 </div>

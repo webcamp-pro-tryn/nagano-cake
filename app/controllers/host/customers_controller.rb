@@ -16,6 +16,7 @@ class Host::CustomersController < ApplicationController
   def update
   	@customer = Customer.find(params[:id])
   	if @customer.update(params_customer)
+       flash[:success] = "会員情報が更新されました"
   		redirect_to host_customer_path(@customer)
   	else
   		render 'edit'
@@ -31,7 +32,8 @@ class Host::CustomersController < ApplicationController
   		:postal_code,
   		:address,
   		:phone_number,
-  		:email
+  		:email,
+      :is_deleted
       )
   end
 end

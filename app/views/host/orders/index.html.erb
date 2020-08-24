@@ -22,7 +22,7 @@
         	        	<%=link_to "#{order.customer.family_name}#{order.customer.first_name}", host_customer_path(order.customer) %>
         	        </td>
         	        <td>
-        	        	<%= order.customer.cart_items.count %>
+        	        	<%= order.order_items.count %>
         	        </td>
         	        <td>
         	        	<%= order.order_status_i18n %>
