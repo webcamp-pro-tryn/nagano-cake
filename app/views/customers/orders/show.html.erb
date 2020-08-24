@@ -25,7 +25,7 @@
         </tr>
         <tr>
           <th>ステータス</th>
-          <td></td>
+          <td><%= @order.order_status%></td>
         </tr>
       </table>
     </div>
@@ -36,7 +36,7 @@
       <strong>請求情報</strong>
         <tr>
           <th>商品合計</th>
-          <td></td>
+          <td><%= @order.price%></td>
         </tr>
         <tr>
           <th>配送料</th>
@@ -44,7 +44,7 @@
         </tr>
         <tr>
           <th>ご請求額</th>
-          <td></td>
+          <td><%= @order.price + @order.postage %></td>
         </tr>
       </table>
     </div>
