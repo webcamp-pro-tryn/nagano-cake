@@ -3,6 +3,12 @@
 class Customers::Devise::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  # def update_resource(resource, params)
+  # end
+
+  # def after_update_password_path_for(resource)
+  #   customers_path(current_customer)
+  # end
 
   # GET /resource/sign_up
   # def new
@@ -37,7 +43,9 @@ class Customers::Devise::RegistrationsController < Devise::RegistrationsControll
   # def cancel
   #   super
   # end
-
+  def after_update_path_for(resource)
+    customer_path(current_customer)
+  end
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
