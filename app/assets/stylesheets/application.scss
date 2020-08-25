@@ -108,8 +108,18 @@ hr {
  text-align:center;
  font-size:10px;
  font-weight:bold;
+}
 
 .flash{
 	margin-right: 15px;
 	margin-left: 15px;
+}
+.genre {
+	min-height: 500px;
+}
+#error_explanation {
+	background-color: #FFABCE		;
+	border: 1px solid #FF97C2	;
+	color: white	;
+	margin: 10px;
 }
