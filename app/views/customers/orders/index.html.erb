@@ -1,10 +1,14 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
 
-	<div class="col-md-10">
-      <h2 class="mt-5 d-inline-block">注文履歴一覧</h2>
+	<div class="col-md-12">
+      <h2 class="mt-5 d-inline-block">注文履歴一覧</h2></div>
 
-      <table class="table table-bordered">
+
+    <div class="container">
+        <div class="row">
+        <div class="col-md-11">
+        <table class="table table-bordered">
             <thead class="thead-light">
                 <tr>
                     <th class="col-xs-1">注文日</th>
@@ -34,7 +38,10 @@
                 </tr>
             <% end %>
             </tbody>
-      </table>
+        </table>
+        </div>
+      </div>
+      <div class="pull-right"><%= link_to "前に戻る", customer_path(current_customer), class:"btn btn-info m-2 w-30" %></div>
     </div>
   </div>
 </div>

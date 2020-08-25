@@ -1,8 +1,13 @@
 class Host::CustomersController < ApplicationController
   #before_action :authenticate_host!　ホストのみ機能を使える
   def index
-  	@customers = Customer.page(params[:page])
-
+    @customers = Customer.page(params[:page])
+    @q = Customer.ransack(params[:q])
+    if params[:q] != nil
+    @customers = @q.result.page(params[:page])
+    else
+      @@customers = Customer.page(params[:page])
+    end
   end
 
   def show
@@ -19,7 +24,8 @@ class Host::CustomersController < ApplicationController
        flash[:success] = "会員情報が更新されました"
   		redirect_to host_customer_path(@customer)
   	else
-  		render 'edit'
+      flash[:danger] = "会員情報の更新に失敗しました"
+   		render 'edit'
   	end
   end
   private
