@@ -1,5 +1,5 @@
 class Host::ItemsController < ApplicationController
-	# before_action :authenticate_host!
+	before_action :authenticate_host!
 
 	before_action :set_genres, only: [:new, :edit, :index, :create, :update]
 
@@ -18,6 +18,8 @@ class Host::ItemsController < ApplicationController
 
 	def index
 		@items = Item.all
+		@search = Item.ransack(params[:q])
+		@items = @search.result
 	end
 
 	def show

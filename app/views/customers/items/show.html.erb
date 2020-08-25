@@ -1,8 +1,6 @@
 <div class="container my-5">
   <div class="row">
-  <%# ジャンルボックス表示 %>
-      <%= render 'customers/items/genre_serch', genres:@genres %>
-
+    <%= render '/layouts/genre_serch', genres:@genres %>
     <div class="col-md-9 mt-3">
     <%# 画像 %>
       <div class="col-md-5 mt-5"><%= attachment_image_tag(@item, :image, size: "300x300" ) %></div>
@@ -16,7 +14,7 @@
 
         <%= form_for(@cart_item, url:customers_cart_items_path) do |f| %>
         <div class="row mt-5 ml-5">
-          <div class="col-md-6">
+          <div class="col-md-8">
             <%= f.select :quantity,(1..10).to_a, { include_blank: '個数選択'}, { class: 'form-control product-show-form-contro' } %>
           </div>
           <div class="col-md-2">
@@ -27,6 +25,5 @@
         <% end %>
       </div>
     </div>
-<%= current_customer.family_name%>
   </div>
 </div>

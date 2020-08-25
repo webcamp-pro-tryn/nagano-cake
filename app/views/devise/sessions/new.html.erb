@@ -27,11 +27,15 @@
   </div>
 
 
- <!--  <%# if devise_mapping.rememberable? %>
-    <div class="field">
-      <%#= f.check_box :remember_me %>
-      <%#= f.label :remember_me %>
-    </div>
-  <%# end %> -->
+<h6><%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+  <%= link_to "=>パスワードを忘れた方はこちら", new_password_path(resource_name) %>
+<% end %></h6>
+
+
+  <div class="actions">
+    <%= f.submit "ログイン",class:"btn btn-primary w-15"%>
+  </div>
+<% end %>
+
 <h2>登録がお済みでない方</h2>
 <%= link_to "こちら", new_registration_path(resource_name) %>から新規登録を行ってください。

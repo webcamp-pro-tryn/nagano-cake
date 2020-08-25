@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   namespace :host do
     get 'top'=>'orders#top'
     resources :items
-    resources :genres
+    resources :genres do
+      member do
+        get :genre_items
+      end
+    end
     resources :customers#,　only: [:index, :show, :edit, :update]
     get 'orders/today_index' => 'orders#today_index'
     resources :orders, only: [:index, :show, :edit, :update]
@@ -20,9 +24,13 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :customers, controllers: {
     sessions: "customers/devise/sessions",
-    # passwords: "customers/devise/passwords",
+    passwords: "customers/devise/passwords",
     registrations: "customers/devise/registrations"
   }
+
+  devise_scope :customers do
+    get '/customers/password/edit/:id', to: 'devise/passwords#edit'
+  end
 
   namespace :customers do
     resources :items, only: [:index, :show]
@@ -33,12 +41,12 @@ Rails.application.routes.draw do
       end
       collection do
         get :thanks
+        post :add_delivery
       end
     end
     # resources :deliveries, only: [:index, :edit, :create, :update, :destroy]
     get "/:id/withdraw_confirm" => "customers#withdraw_confirm", as:"withdraw_confirm"
   	patch "/:id/withdraw" => "customers#withdraw", as:"withdraw"
-
     delete "/destroy_all" => "cart_items#destroy_all",as:"destroy_all"
   end
 

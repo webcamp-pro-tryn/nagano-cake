@@ -1,5 +1,4 @@
 <header>
-	<div class="container-fluid">
 	<div class="header_flex">
 	<nav>
 		<h1 class="title">ながのCAKE</h1>
@@ -8,38 +7,43 @@
 		<ul>
 			<!-- カスタマーがログインしている時 -->
 			<% if customer_signed_in? %>
-				<li>
+				<li class="customer-name">
 					ようこそ、<%= current_customer.family_name + current_customer.first_name %> 様！
 				</li>
 				<li>
-					<%= link_to "マイページ", customer_path(current_customer) %>
+					<%= link_to "マイページ", customer_path(current_customer), class: "btn btn-default" %>
 				</li>
 				<li>
-					<%= link_to "商品一覧", customers_items_path %>
+					<%= link_to "商品一覧", customers_items_path, class: "btn btn-default" %>
 				</li>
 				<li>
-					<%= link_to "カート", customers_cart_items_path %>
+					<%= link_to "カート", customers_cart_items_path, class: "btn btn-default" %>
 				</li>
 				<li>
-					<%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+					<%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-default" %>
 				</li>
 			<% elsif host_signed_in? %>
 			<!-- 管理者がログインしている時 -->
 				<li>
-					<%= link_to "商品一覧", host_items_path %>
+					<%= link_to "商品一覧", host_items_path, class: "btn btn-default" %>
 				</li>
 				<li>
-					<%= link_to "会員一覧", host_customers_path %>
+					<%= link_to "会員一覧", host_customers_path, class: "btn btn-default" %>
 				</li>
 				<li>
-					<%= link_to "注文履歴一覧", host_orders_path %>
+					<%= link_to "注文履歴一覧", host_orders_path, class: "btn btn-default" %>
 				</li>
 				<li>
-					<%= link_to "ジャンル一覧", host_genres_path %>
+					<%= link_to "ジャンル一覧", host_genres_path, class: "btn btn-default" %>
 				</li>
 				<li>
-					<%= link_to "ログアウト", destroy_host_session_path, method: :delete %>
+					<%= link_to "ログアウト", destroy_host_session_path, method: :delete, class: "btn btn-default" %>
 				</li>
+				<%= search_form_for @search, url: host_items_path do |f| %>
+    				<% f.label :name_cont %>
+    				<%= f.search_field :name_cont %>
+    				<%= f.submit "検索" %>
+				<% end %>
 			<% else %>
 			<!-- ログインしてない時 -->
 				<li>
@@ -48,13 +52,12 @@
 					<%= link_to "商品一覧", customers_items_path %>
 				</li>
 				<li>
-					<%= link_to "新規登録", new_customer_registration_path %>
+					<%= link_to "新規登録", new_customer_registration_path, class: "btn btn-default" %>
 				</li>
 				<li>
-					<%= link_to "ログイン", new_customer_session_path, class: "header_btn glyphicon glyphicon-log-in" %>
+					<%= link_to "ログイン", new_customer_session_path, class: "header_btn glyphicon glyphicon-log-in btn btn-default" %>
 				</li>
 			<% end %>
 		</ul>
 	</nav>
-    </div>
 </header>

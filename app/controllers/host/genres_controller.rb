@@ -1,5 +1,5 @@
 class Host::GenresController < ApplicationController
-
+  before_action :authenticate_host!
 
   def index
     @genre = Genre.new
@@ -31,6 +31,11 @@ class Host::GenresController < ApplicationController
     @genre = Genre.find(params[:id])
     @genre.update(genre_params)
     redirect_to host_genres_path
+  end
+
+  def genre_items
+    @items = Item.where(genre_id: params[:id])
+    @genres = Genre.all
   end
 
   private
