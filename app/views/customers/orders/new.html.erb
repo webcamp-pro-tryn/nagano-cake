@@ -3,21 +3,20 @@
     <h3 class="px-5 mt-5 bg-light">注文情報入力</h3>
   </div>
   <%# 支払い方法 %>
-  <h4><strong>支払い方法</strong> <span class="badge badge-danger">必須</span></label></h4>
-  <div class="ml-5 form-check">
-    <%= form_for(@order, url:customers_orders_path, method: :post) do |f| %>
+  <h4><strong>支払い方法</strong> <span class="badge badge-danger">必須</span></h4>
+  <%= form_for(@order, url:customers_orders_path, method: :post) do |f| %>
+   <div class="ml-5 form-check">
 
-<% if @order.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
-
-      <ul>
-        <% @order.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-<% end %>
+      <% if @order.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+            <ul>
+              <% @order.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
 
 
       <%= f.radio_button :payment, :クレジットカード%>
@@ -27,7 +26,7 @@
   </div>
     
   <%# お届け先 %>
-  <h4><strong>お届け先</strong> <span class="badge badge-danger">必須</span></label></h4>
+  <h4><strong>お届け先</strong> <span class="badge badge-danger">必須</span></h4>
   <%# ご自身の住所 %>
       <div class="ml-5">
         <%= radio_button_tag :address, "my_address" %>
@@ -59,3 +58,4 @@
         <%= f.submit "確認画面へ進む", class:"btn btn-primary ml-auto" %>
     <% end %>
 </div>
+
