@@ -17,22 +17,19 @@ class Customers::OrdersController < ApplicationController
 
   def create
     @order = current_customer.orders.new(order_params)
-    @order.save
     # ご自身の住所
     if params[:address] == "my_address"
       @order.name = current_customer.family_name + current_customer.first_name
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
-      @order.save
     # 登録済住所
     elsif params[:address] == "select_address"
       address = Delivery.find(params[:order][:id])
       @order.name = address.name
       @order.postal_code = address.postal_code
       @order.address = address.address
-      @order.save
     end
-    @cart_items = current_customer.cart_items.all
+      @cart_items = current_customer.cart_items.all
 
   # 注文が確定したらCartItemの情報をOrderItemに入れる
     @cart_items.each do |cart_item|
@@ -49,8 +46,12 @@ class Customers::OrdersController < ApplicationController
     items.each do |item|
       @order.price += (item.sub_price * 1.1).floor * item.quantity
     end
-    @order.save
-    redirect_to  confirm_customers_order_path(@order)
+
+    if @order.save
+      redirect_to  confirm_customers_order_path(@order)
+    else
+      render 'new'
+    end
   end
 
   def confirm
@@ -59,8 +60,20 @@ class Customers::OrdersController < ApplicationController
    end
 
   def thanks
+    @order = current_customer.orders.last
+    @orders = current_customer.orders.all
     # 注文が確定したらCartItemの情報を削除
     current_customer.cart_items.destroy_all
+  end
+
+  def add_delivery
+    @order = current_customer.orders.last
+    @delivery = current_customer.deliveries.new
+    @delivery.name = @order.name
+    @delivery.postal_code = @order.postal_code
+    @delivery.address = @order.address
+    @delivery.save
+    redirect_to customer_deliveries_path(current_customer)
   end
 
   private
