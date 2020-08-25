@@ -14,8 +14,14 @@ class Host::OrdersController < ApplicationController
 
 
   def index
-  	@orders = Order.page(params[:page]).reverse_order
+    @orders = Order.page(params[:page])
+    @q = Order.ransack(params[:q])
+    if params[:q] != nil
+    @orders =@q.result.includes(:customer).page(params[:page]).reverse_order
+    else
+   @orders = Order.page(params[:page])
   end
+end
 
   def show
   	@order = Order.find(params[:id])
