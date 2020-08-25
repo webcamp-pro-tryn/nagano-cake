@@ -1,5 +1,5 @@
 class Host::GenresController < ApplicationController
-
+  before_action :authenticate_host!
 
   def index
     @genre = Genre.new
