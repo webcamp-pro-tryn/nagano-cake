@@ -24,7 +24,6 @@
 }
 .host-login{
 	text-align: center;
-	margin-top:50px;
 }
 li{
 	list-style: none;
@@ -114,9 +113,15 @@ hr {
 	margin-right: 15px;
 	margin-left: 15px;
 }
+
+.sign-link{
+	margin-left: 180px;
+}
+
 .genre {
 	min-height: 500px;
 }
+
 #error_explanation {
 	background-color: #FFABCE		;
 	border: 1px solid #FF97C2	;

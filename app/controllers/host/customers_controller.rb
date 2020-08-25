@@ -19,7 +19,8 @@ class Host::CustomersController < ApplicationController
        flash[:success] = "会員情報が更新されました"
   		redirect_to host_customer_path(@customer)
   	else
-  		render 'edit'
+      flash[:danger] = "会員情報の更新に失敗しました"
+   		render 'edit'
   	end
   end
   private
