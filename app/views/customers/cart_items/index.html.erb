@@ -16,7 +16,7 @@
           <th>小計</th>
           <th></th>
         <thead>
-
+      <% total = 0 %>
       <% @cart_items.each do |cart_item| %>
         <tbody>
         <%# 商品画像、商品名 %>
@@ -32,7 +32,9 @@
               <% end %>
             </td>
             <%# 小計 %>
-            <td class="align-middle col-md-2"><%= (cart_item.item.non_tax_price * 1.1).floor * cart_item.quantity%></td>
+            <% price = (cart_item.item.non_tax_price * 1.1).floor * cart_item.quantity %>
+            <% total = price + total %>
+            <td class="align-middle col-md-2"><%= price %></td>
             <%# 削除ボタン %>
             <td class="align-middle col-md-2"><%= link_to "削除する", customers_cart_item_path(cart_item), method: :delete, class:"btn btn-danger mx-auto" %>
         </tbody>
@@ -46,13 +48,11 @@
         <%= link_to "買い物を続ける", customers_items_path, class: "btn btn-primary" %>
       </div>
       <div class="mt-5">
-        <strong class="red-border px-3 pb-1">合計金額 円</strong>
+        <strong class="red-border px-3 pb-1">合計金額<%= total %> 円</strong>
       </div>
     </div>
 
     <div class="row">
       <%= link_to "情報入力に進む", new_customers_order_path(@order), class:"btn btn-primary mx-auto"%>
     </div>
-<%= current_customer.first_name %>
-<%= current_customer.id %>
 </div>

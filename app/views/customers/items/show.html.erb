@@ -16,7 +16,7 @@
 
         <%= form_for(@cart_item, url:customers_cart_items_path) do |f| %>
         <div class="row mt-5 ml-5">
-          <div class="col-md-6">
+          <div class="col-md-8">
             <%= f.select :quantity,(1..10).to_a, { include_blank: '個数選択'}, { class: 'form-control product-show-form-contro' } %>
           </div>
           <div class="col-md-2">
@@ -27,6 +27,5 @@
         <% end %>
       </div>
     </div>
-<%= current_customer.family_name%>
   </div>
 </div>
