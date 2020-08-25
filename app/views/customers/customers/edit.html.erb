@@ -1,39 +1,39 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
 
 	<div class="col-md-12">
       <h2 class="mt-12 d-inline-block">会員情報編集</h2>
-
+  <% if current_customer == @customer %>
   <%= form_for(@customer, url: customer_path) do |f| %>
   <!-- <div class="form-group has-icon"> -->
    <!--  <label class="control-label sr-only" for="inputEmail">Name</label> -->
 
 
       <div class="form-group">
-        <label class="col-sm-3 control-label">名前</label>
-          <div class="col-sm-8 mr-sm form-inline">
+        <label class="col-sm-4 control-label text-right">名前</label>
+          <div class="col-sm-7 mr-sm form-inline">
             <p>（姓）<%= f.text_field :family_name, class:"form-control"%></p>
             <p>（名）<%= f.text_field :first_name, class:"form-control"%></p>
           </div>
       </div>
       
       <div class="form-group">
-        <label class="col-sm-3 control-label">フリガナ</label>
-          <div class="col-sm-8 mr-sm form-inline">
+        <label class="col-sm-4 text-right control-label">フリガナ</label>
+          <div class="col-sm-7 mr-sm form-inline">
               <p>（姓）<%= f.text_field :family_name_kana, class:"form-control"%></p>
               <p>（名）<%= f.text_field :first_name_kana, class:"form-control"%></p>
           </div>
       </div><br>
       
       <div class="form-group">
-        <div class="col-sm-4">
+        <div class="col-sm-4 text-right">
           <label for="text"><p>郵便番号（ハイフンなし）</p></label></div>
             <div class="col-sm-5 mr-sm">
               <p><%= f.text_field :postal_code, class:"form-control"%></p></div>
       </div>
 
       <div class="form-group">
-        <div class="col-sm-4">
+        <div class="col-sm-4 text-right">
           <label for="text"><p>住所</p></label></div>
            <div class="col-sm-8 mr-sm">
               <p><%= f.text_field :address, class:"form-control"%></p>
@@ -41,7 +41,7 @@
       </div>
 
       <div class="form-group">
-        <div class="col-sm-4">
+        <div class="col-sm-4 text-right">
           <label for="text"><p>電話番号</p></label></div>
             <div class="col-sm-5 mr-sm">
               <p><%= f.text_field :phone_number, class:"form-control" %></p>
@@ -49,7 +49,7 @@
       </div>
 
       <div class="form-group">
-        <div class="col-sm-4">
+        <div class="col-sm-4 text-right">
           <label for="email"><p>メールアドレス</p></label></div>
             <div class="col-sm-5 mr-sm">
               <p><%= f.email_field :email, class:"form-control"%></p>
@@ -58,11 +58,16 @@
 
    <!--  <span class="fa fa-user form-control-icon" aria-hidden="true"></span> -->
   </div>
-  <div class="col-10 text-center">
-  <%= f.submit "編集内容を保存する", class:"btn btn-primary w-30" %></div>
-  <div class="col-2 ml-sm">
-  <%= link_to "退会する", customers_withdraw_confirm_path,class:"btn btn-danger w-15" %></div>
-  <% end %>
 
+    <div class="col-md-12 text-center">
+    <%= f.submit "編集内容を保存する", class:"btn btn-primary w-30" %></div>
+    <div class="w-100"></div>
+    <div class="col-11 mr-sm text-right">
+    <%= link_to "退会する", customers_withdraw_confirm_path, class:"btn btn-danger " %>
+    <%= link_to "前に戻る", :back, class:"btn btn-info m-2 w-30" %></div>
+  </div>
+    <% end %>
+
+  <% end %>
   </div>
 </div>
