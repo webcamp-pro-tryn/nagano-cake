@@ -39,6 +39,7 @@ Rails.application.routes.draw do
         get :thanks
       end
     end
+    resources :deliveries, only: [:index, :edit, :create, :update, :destroy]
     # resources :deliveries, only: [:index, :edit, :create, :update, :destroy]
     get "/:id/withdraw_confirm" => "customers#withdraw_confirm", as:"withdraw_confirm"
   	patch "/:id/withdraw" => "customers#withdraw", as:"withdraw"
@@ -48,7 +49,7 @@ Rails.application.routes.draw do
 
   scope module: 'customers' do
     resources :customers do
-      resources :deliveries, only: [:index, :edit, :create, :update, :destroy]
+      
       # resources :orders, only: [:index, :show]
     end
   end

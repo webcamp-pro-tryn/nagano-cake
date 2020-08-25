@@ -1,17 +1,17 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
 
-	<div class="col-md-9">
+	  <div class="col-md-12">
       <h2 class="mt-5 d-inline-block">マイページ</h2>
 
-      <div class="container-fluid">
+      <div class="container"> 
         <div class="row">
-          <h4><strong>登録情報</strong></h4>
-          <div class="col"><%= link_to "編集する", edit_customer_path,class: "btn btn-primary" %>
-            <%= link_to "パスワードを変更する",edit_customer_registration_path(current_customer),class: "btn btn-primary" %></div>
+          <div class="col-sm-2 ml-4"><h4><strong>登録情報</strong></h4></div>
+          <div class="col"><%= link_to "編集する", edit_customer_path,class: "btn btn-primary w-25" %>
+            <%= link_to "パスワードを変更する",edit_customer_registration_path(current_customer),class: "btn btn-success w-25" %></div>
         </div>
 
-      <div class="col-12 ml-5">
+      <div class="col-12 ml-5 mt-5">
         <table class="table table-bordered">
             <tbody>
                 <tr>
@@ -41,17 +41,16 @@
             </tbody>
         </table>
     </div>
+    <div class="container mt-5">
+        <div class="row">
+          <div class="col-sm-2"><h4><strong>配送先</strong></h4></div>
+          <div class="col-sm-10 ml-sm-auto text-left"><%= link_to "一覧を見る", customers_deliveries_path(current_customer.id),class: "btn btn-primary w-50" %></div>
 
+          <div class="col-sm-2"><h4><strong>注文履歴</strong></h4></div>
+          <div class="col-sm-10 ml-sm-auto text-left"><%= link_to "一覧を見る", customers_orders_path(current_customer.id),class: "btn btn-primary w-50" %></div>
+        </div>
+    </div>
 
-
-       <div class="row">
-          <div class="col-sm-4"><h4><strong>配送先</strong></h4></div>
-          <div class="col-sm-8 ml-sm-auto"><%= link_to "一覧を見る", customer_deliveries_path(current_customer.id),class: "btn btn-primary w-50" %></div>
-       </div>
-       <div class="row">
-          <div class="col-sm-4"><h4><strong>注文履歴</strong></h4></div>
-          <div class="col-sm-8 ml-sm-auto"><%= link_to "一覧を見る", customers_orders_path(current_customer.id),class: "btn btn-primary w-50" %></div>
-       </div>
     </div>
 
     </div>
