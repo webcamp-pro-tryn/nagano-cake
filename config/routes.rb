@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   namespace :host do
     get 'top'=>'orders#top'
     resources :items
-    resources :genres
+    resources :genres do
+      member do
+        get :genre_items
+      end
+    end
     resources :customers#,　only: [:index, :show, :edit, :update]
     get 'orders/today_index' => 'orders#today_index'
     resources :orders, only: [:index, :show, :edit, :update]

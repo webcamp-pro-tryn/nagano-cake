@@ -33,6 +33,11 @@ class Host::GenresController < ApplicationController
     redirect_to host_genres_path
   end
 
+  def genre_items
+    @items = Item.where(genre_id: params[:id])
+    @genres = Genre.all
+  end
+
   private
 
   def genre_params
