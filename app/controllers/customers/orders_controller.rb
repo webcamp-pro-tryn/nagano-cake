@@ -68,12 +68,18 @@ class Customers::OrdersController < ApplicationController
 
   def add_delivery
     @order = current_customer.orders.last
-    @delivery = current_customer.deliveries.new
-    @delivery.name = @order.name
-    @delivery.postal_code = @order.postal_code
-    @delivery.address = @order.address
-    @delivery.save
-    redirect_to customer_deliveries_path(current_customer)
+
+    if current_customer.deliveries.exists?(address: @order.address )
+      flash[:notice] = "既に登録されています。"
+      render 'thanks'
+    else
+      @delivery = current_customer.deliveries.new
+      @delivery.name = @order.name
+      @delivery.postal_code = @order.postal_code
+      @delivery.address = @order.address
+      @delivery.save
+      redirect_to customer_deliveries_path(current_customer)
+    end
   end
 
   private
