@@ -37,12 +37,12 @@ Rails.application.routes.draw do
       end
       collection do
         get :thanks
+        post :add_delivery
       end
     end
     # resources :deliveries, only: [:index, :edit, :create, :update, :destroy]
     get "/:id/withdraw_confirm" => "customers#withdraw_confirm", as:"withdraw_confirm"
   	patch "/:id/withdraw" => "customers#withdraw", as:"withdraw"
-
     delete "/destroy_all" => "cart_items#destroy_all",as:"destroy_all"
   end
 
