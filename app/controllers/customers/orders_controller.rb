@@ -78,7 +78,7 @@ class Customers::OrdersController < ApplicationController
       @delivery.postal_code = @order.postal_code
       @delivery.address = @order.address
       @delivery.save
-      redirect_to customer_deliveries_path(current_customer)
+      redirect_to customers_deliveries_path(current_customer)
     end
   end
 

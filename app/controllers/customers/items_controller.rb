@@ -10,7 +10,12 @@ class Customers::ItemsController < ApplicationController
 		@cart_item = CartItem.new
 		@genres = Genre.all
 	end
-  
+	
+	def genre_items
+    @items = Item.where(genre_id: params[:id])
+    @genres = Genre.all
+	end
+	
 	private
 	def item_params
 		params.require(:item).permit(:name, :image, :description, :genre_id, :non_tax_price, :is_active)
