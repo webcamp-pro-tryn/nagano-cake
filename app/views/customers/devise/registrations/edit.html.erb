@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
 
   <div class="col-md-12">
@@ -7,53 +7,46 @@
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-      ****
-        <div class="row">
-          <div class="col-sm-4"><h4>郵便番号（ハイフンなし）</h4></div>
-          <div class="col-sm-6 mr-sm"><%= f.text_field :postal_code %></div>
-        </div>
-      *****
-
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-      <div class= "row">
-        <div class="col-sm-4">
-        <%= f.label :メールアドレス %></div>
-        <div class="col-sm-8 mr-sm">
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %></div>
-      </div> 
+<!--       <div class= "row form-group">
+        <div class="col-sm-4 text-right">
+        <%#= f.label :登録済みメールアドレス %></div>
+        <div class="col-sm-6 mr-sm">
+        <%#= f.email_field :email, class:"form-control",autofocus: true, autocomplete: "email" %></div>
+      </div>  -->
 
-      <div class= "row">
-        <div class="col-sm-4">
-        <%= f.label :新しいパスワード %></div>
-        <div class="col-sm-8 mr-sm">
-        <%= f.password_field :password, autocomplete: "new-password" %>
-            <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %>文字以上)</em>
+      <div class= "row form-group mt-5">
+        <div class="col-sm-4 text-right">
+        <%= f.label :新しいパスワード %>
+        <% if @minimum_password_length %>
+            <strong>（<%= @minimum_password_length %>文字以上）</strong>
             <% end %></div>
+        <div class="col-sm-6 mr-sm">
+        <%= f.password_field :password, class:"form-control", autocomplete: "new-password" %></div>
       </div> 
 
-      <div class= "row">
-        <div class="col-sm-4">
+      <div class= "row form-group">
+        <div class="col-sm-4 text-right">
         <%= f.label :新しいパスワード（確認用） %></div>
-        <div class="col-sm-8 mr-sm">
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %></div>
+        <div class="col-sm-6 mr-sm">
+        <%= f.password_field :password_confirmation, class:"form-control", autocomplete: "new-password" %></div>
       </div> 
 
-      <div class= "row">
-        <div class="col-sm-4">
-        <%= f.label :現在のパスワード %></div>
-        <div class="col-sm-8 mr-sm">
-        <%= f.password_field :current_password, autocomplete: "current-password" %></div>
+      <div class= "row form-group">
+        <div class="col-sm-4 text-right">
+        <%= f.label :現在のパスワード（本人確認） %></div>
+        <div class="col-sm-6 mr-sm">
+        <%= f.password_field :current_password, class:"form-control", autocomplete: "current-password" %></div>
       </div> 
 
-        <div class="actions">
+        <div class="actions col-8 text-center">
           <%= f.submit "パスワードを更新する", class: "btn btn-success" %>
         </div>
-          
-          <%= link_to "戻る", :back, class: "btn btn-primary" %>
+        <div class="col-10 text-right">
+          <%= link_to "前に戻る", :back, class: "btn btn-info pull-right" %></div>
   <% end %>
   
   </div>

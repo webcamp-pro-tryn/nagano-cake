@@ -1,8 +1,9 @@
 class Customers::CustomersController < ApplicationController
-
+	before_action :authenticate_customer!
+	
 	def show
 		@customer = Customer.find(params[:id])
-		# @customer = current_customer
+		@customer = current_customer
 	end
 
 	def withdraw
@@ -36,5 +37,13 @@ class Customers::CustomersController < ApplicationController
 
 	def customer_params
 		params.require(:customer).permit(:family_name, :first_name, :family_name_kana, :first_name_kana, :postal_code, :address, :phone_number, :email)
+	end
+
+	def correct_customer
+		customer = Customer.find(params[:id])
+		if current_customer != customer
+			redirect_to new_customer_registration_path
+	end
+
 	end
 end
