@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <!-- ジャンル検索サイドバー / パーシャル表示 -->
-    <%= render '/customers/items/genre_serch', genres: @genres %>
+    <%= render 'layouts/genre_serch', genres: @genres %>
 
     <div class="col-xs-9">
       <!-- 画像背景 -->
@@ -25,7 +25,7 @@
           <div class="item-container">
 
           <%= link_to customers_item_path(item.id), class: "btn-link", :style=>"color:#0099FF;" do %>
-          <div id="img_field" class="item">
+          <div class="img_field">
           <%= attachment_image_tag(item, :image, size: "180x130") %>
           </div>
           <p class="item-name">
@@ -34,7 +34,7 @@
           <% end %>
 
           <% if item.is_active == true %>
-            <p>¥<%= (item.non_tax_price * 1.1).floor %></p>
+            <p class="item-name">¥<%= (item.non_tax_price * 1.1).floor %></p>
           <% elsif item.is_active == false %>
             <p class="soldout">売り切れ中</p>
           <% end %>

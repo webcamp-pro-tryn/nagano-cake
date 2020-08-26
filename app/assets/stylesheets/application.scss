@@ -35,11 +35,8 @@
 li{
 	list-style: none;
 }
-div {
-	padding: 0 30px;
-}
 header{
-	width: 100%;
+	width: 100vw;
   background-image: image-url('header.jpg');
   background-size: cover;
 }
@@ -75,8 +72,9 @@ header{
 .customer-name{
   font-weight: bold;
 	margin-top: 10px;
-  color: #66cdaa;
+  color: #000;
   font-size: 16px;
+  background-color: rgba(255,255,255,0.6);
 }
 .cart-count {
   color: #000;
@@ -170,7 +168,7 @@ hr {
 	margin-top: 40px;
 	font-size: 20px;
 	}
-	
+
 .about-text ::before {
   content: '';
   position: absolute;
