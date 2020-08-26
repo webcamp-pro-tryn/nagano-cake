@@ -1,7 +1,9 @@
 <div class="container">
-  <div class="row">
-     <h3 class="login-title col-xs-offset-2">管理者ログイン</h3>
-    <div class="host-login">
+     <div class="row">
+      <div class="col-xs-12">
+    <h2 class="head-line title_h2 text-center">管理者ログイン</h2>
+  </div>
+    <div class="host-login col-md-6 offset-md-3">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <table border="0" align="center" >
          <tr height="50">
@@ -19,5 +21,6 @@
     </div>
     <% end %>
     </div>
+  
   </div>
 </div>

@@ -1,24 +1,47 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-	<div class="col-md-9">
-	  	<h2 class="mt-5 d-inline-block">配送先編集</h2>
 
-		<%= form_for(@delivery, url: customer_delivery_path) do |f| %>
+	<div class="col-md-12">
+	  <h2 class="mt-8 d-inline-block">配送先編集</h2>
 
-  		    <form class="form-inline">
-            <h4>郵便番号（ハイフンなし）</h4><div class="col-3 "><%= f.text_field :postal_code, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"郵便番号"%></div>
-		      
-          <p><h4>住所</h4>
-            <div class="col-8"><%= f.text_field :address, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"住所"%></p></div>
-          <p><h4>宛名</h4>
-            <div class="col-3"><%= f.text_field :name, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"宛名"%></p>
-            <%= f.submit "編集する", class:"btn btn-lg btn-primary" %></div>
-            </form>
+    <%= form_for(@delivery, url: customers_delivery_path) do |f| %>
+
+            <div class="row form-group">
+              <div class="col-sm-4 text-right"><%= f.label :郵便番号（ハイフンなし）%></div>
+                <div class="col-sm-4 mr-sm">
+                  <%= f.text_field :postal_code, class:"form-control",autofocus: true, autocomplete: "postal_code" %></div>
+            </div>
+
+            <div class="row form-group">
+              <div class="col-sm-4 text-right">
+                <%= f.label :住所 %></div>
+                <div class="col-sm-6 mr-sm">
+                  <%= f.text_field :address, class:"form-control", autocomplete: "address" %></div>
+            </div>
+
+            <div class="row form-group">
+              <div class= "col-sm-4 control-label text-right">
+                <%= f.label :宛名 %></div></p>
+                <div class="col-sm-4 mr-sm">
+                  <%= f.text_field :name,class:"form-control", autocomplete: "name" %></div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-12 text-center">
+              <%= f.submit "編集内容を保存する", class:"btn btn-primary m-2 w-25" %></div>
+            </div>
+
   		<% end %>
-	</div>
+            <div class="row">
+              <div class="col-11 text-right">
+              <%= link_to "前に戻る", :back, class:"btn btn-info m-2 w-30" %></div>
+            </div>
+
+  </div>
+
   </div>
 </div>
-
 
  <!--      <div class="row">
         <div class="col-sm-4"><h5>住所</h5></div>

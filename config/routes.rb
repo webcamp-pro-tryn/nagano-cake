@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   namespace :host do
     get 'top'=>'orders#top'
     resources :items
-    resources :genres
+    resources :genres do
+      member do
+        get :genre_items
+      end
+    end
     resources :customers#,　only: [:index, :show, :edit, :update]
     get 'orders/today_index' => 'orders#today_index'
     resources :orders, only: [:index, :show, :edit, :update]
@@ -37,18 +41,19 @@ Rails.application.routes.draw do
       end
       collection do
         get :thanks
+        post :add_delivery
       end
     end
+    resources :deliveries, only: [:index, :edit, :create, :update, :destroy]
     # resources :deliveries, only: [:index, :edit, :create, :update, :destroy]
     get "/:id/withdraw_confirm" => "customers#withdraw_confirm", as:"withdraw_confirm"
   	patch "/:id/withdraw" => "customers#withdraw", as:"withdraw"
-
     delete "/destroy_all" => "cart_items#destroy_all",as:"destroy_all"
   end
 
   scope module: 'customers' do
     resources :customers do
-      resources :deliveries, only: [:index, :edit, :create, :update, :destroy]
+      
       # resources :orders, only: [:index, :show]
     end
   end

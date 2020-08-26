@@ -1,8 +1,6 @@
 <div class="container my-5">
   <div class="row">
-  <%# ジャンルボックス表示 %>
-      <%= render 'customers/items/genre_serch', genres:@genres %>
-
+    <%= render '/layouts/genre_serch', genres:@genres %>
     <div class="col-md-9 mt-3">
     <%# 画像 %>
       <div class="col-md-5 mt-5"><%= attachment_image_tag(@item, :image, size: "300x300" ) %></div>
@@ -22,10 +20,18 @@
           <div class="col-md-2">
           <%= f.hidden_field :item_id, :value => @item.id %>
             <%= f.submit 'カートに入れる', class: "btn btn-success btn-new-register btn-lg"%>
+
+            </div>
           </div>
+
         </div>
+
         <% end %>
+ 
+  
       </div>
+ 
     </div>
   </div>
+
 </div>
