@@ -2,9 +2,9 @@
   <div class="border border-dark mt-5 genre">
     <h4 class="border-bottom border-dark text-center">ジャンル検索</h4>
       <% genres.each do |genre| %>
-      <%= link_to  genre_items_host_genre_path(genre) do %>
-        <div class="text-center my-3"><%= genre.name %></div>
-      <% end %>
+        <%= link_to genre_items_customers_item_path(genre) do %>
+          <div class="text-center my-3"><%= genre.name %></div>
+        <% end %>
       <% end %>
   </div>
 </div>
