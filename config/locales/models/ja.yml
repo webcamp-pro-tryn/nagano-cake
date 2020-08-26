@@ -16,7 +16,6 @@ ja:
         waiting: "制作待ち"
         maiking: "製作中"
         complate: "制作完了"
-ja:
   time:
     formats:
       default: "%Y/%m/%d %H:%M:%S"
