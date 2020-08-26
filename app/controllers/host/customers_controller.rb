@@ -1,5 +1,5 @@
 class Host::CustomersController < ApplicationController
-  #before_action :authenticate_host!　ホストのみ機能を使える
+  before_action :authenticate_host!
   def index
     @customers = Customer.page(params[:page])
     @q = Customer.ransack(params[:q])
