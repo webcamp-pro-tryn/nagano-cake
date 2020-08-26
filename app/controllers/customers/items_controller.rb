@@ -4,7 +4,7 @@ class Customers::ItemsController < ApplicationController
 		@items = Item.all
 		@genres = Genre.all
 	end
-	
+
 	def show
 		@item = Item.find_by(id: params[:id])
 		@cart_item = CartItem.new
