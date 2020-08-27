@@ -1,78 +1,81 @@
 <div class="container">
-  <div class="row">
-    <h3 class="px-5 mt-5 bg-light">注文履歴詳細</h3>
-  </div>
-
-  <div class="row">
-    <div class="col-md-8">
-      <strong>注文情報</strong>
-      <table class="table table-bordered">
-        <tr>
-          <th class="bg-light">注文日</th>
-          <td><%= l @order.created_at %></td>
-        </tr>
-        <tr>
-          <th class="bg-light">配達先</th>
-          <td>
-            <%= @order.postal_code%><br>
-            <%= @order.address %><br>
-            <%= @order.name %>
-          </td>
-        </tr>
-        <tr>
-          <th class="bg-light">支払い方法</th>
-          <td><%= @order.payment %></td>
-        </tr>
-        <tr>
-          <th class="bg-light">ステータス</th>
-          <td><%= @order.order_status %></td>
-        </tr>
-      </table>
+  <div class="background-color">
+    <div class="row">
+      <h3 class="px-5 mt-5 bg-light">注文履歴詳細</h3>
     </div>
 
+    <div class="row">
+      <div class="col-md-8">
+        <strong>注文情報</strong>
+        <table class="table table-bordered">
+          <tr>
+            <th class="bg-light">注文日</th>
+            <td><%= l @order.created_at %></td>
+          </tr>
+          <tr>
+            <th class="bg-light">配達先</th>
+            <td>
+              <%= @order.postal_code%><br>
+              <%= @order.address %><br>
+              <%= @order.name %>
+            </td>
+          </tr>
+          <tr>
+            <th class="bg-light">支払い方法</th>
+            <td><%= @order.payment %></td>
+          </tr>
+          <tr>
+            <th class="bg-light">ステータス</th>
+            <td><%= @order.order_status_i18n %></td>
+          </tr>
+        </table>
+      </div>
 
-    <div class="col-md-4">
-      <table class="table table-bordered">
-      <strong>請求情報</strong>
-        <tr>
-          <th class="bg-light">商品合計</th>
-          <td><%= @order.price%></td>
-        </tr>
-        <tr>
-          <th class="bg-light">配送料</th>
-          <td>800</td>
-        </tr>
-        <tr>
-          <th class="bg-light">ご請求額</th>
-          <td><%= @order.price + @order.postage %></td>
-        </tr>
-      </table>
+
+      <div class="col-md-4">
+        <table class="table table-bordered">
+        <strong>請求情報</strong>
+          <tr>
+            <th class="bg-light">商品合計</th>
+            <td><%= @order.price%></td>
+          </tr>
+          <tr>
+            <th class="bg-light">配送料</th>
+            <td>800</td>
+          </tr>
+          <tr>
+            <th class="bg-light">ご請求額</th>
+            <td><%= @order.price + @order.postage %></td>
+          </tr>
+        </table>
+      </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-10">
-      <table class="table table-bordered">
-      <strong>注文内容</strong>
-        <thead class="thead-light">
-          <th>商品</th>
-          <th>単価</th>
-          <th>個数</th>
-          <th>小計</th>
-        </thead>
-        <tbody>
-          <% @order_items.each do |order_item| %>
-            <tr>
-              <td><%= order_item.item.name %></td>
-              <td><%= order_item.item.non_tax_price %></td>
-              <td><%= order_item.quantity %>
-              <td><%= (order_item.item.non_tax_price * 1.1).floor * order_item.quantity %>
-            </tr>
-          <% end%>
-        </tbody>
-      </table>
-      <div class="col-md-rm-2 pull-right form-inline"><%= link_to "前に戻る", :back, class:"btn btn-info m-2 w-30" %></div>
+    <div class="row">
+      <div class="col-md-10">
+        <table class="table table-bordered">
+        <strong>注文内容</strong>
+          <thead class="thead-light">
+            <th>商品</th>
+            <th>単価</th>
+            <th>個数</th>
+            <th>小計</th>
+          </thead>
+          <tbody>
+            <% @order_items.each do |order_item| %>
+              <tr>
+                <td><%= order_item.item.name %></td>
+                <td><%= order_item.item.non_tax_price %></td>
+                <td><%= order_item.quantity %></td>
+                <td><%= (order_item.item.non_tax_price * 1.1).floor * order_item.quantity %></td>
+              </tr>
+            <% end%>
+          </tbody>
+        </table>
+        <div class="col-md-rm-2 pull-right form-inline"><%= link_to "前に戻る", :back, class:"btn btn-info m-2 w-30" %></div>
+      </div>
     </div>
   </div>
 </div>
+
 

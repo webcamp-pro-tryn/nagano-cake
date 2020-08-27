@@ -1,7 +1,7 @@
 <div class="container-fluid">
-  <div class="row">
-
-	<div class="col-md-12">
+  <div class="background-color">
+    <div class="row">
+	   <div class="col-md-12">
       <h2 class="mt-12 d-inline-block">会員情報編集</h2>
   <% if current_customer == @customer %>
   <%= form_for(@customer, url: customer_path) do |f| %>
@@ -69,5 +69,7 @@
     <% end %>
 
   <% end %>
+   </div>
   </div>
 </div>
+

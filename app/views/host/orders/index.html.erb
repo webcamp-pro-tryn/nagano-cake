@@ -1,10 +1,8 @@
-<div class="flash">
-      <%= render "layouts/flash_messages" %>
-    </div>
-<div class="flash">
-      <%= render "layouts/flash_messages" %>
-    </div>
 <div class="container">
+    <div class="background-color">
+    <div class="flash">
+      <%= render "layouts/flash_messages" %>
+    </div>
         <div class="row">
   <div class="col-xs-12">
     <h2 class="head-line title_h2 text-center">注文一覧</h2>
@@ -42,11 +40,13 @@
                     </td>
                     <td>
                         <%=link_to "注文詳細", host_order_path(order.id) %>
+                    </td>
                 </tr>
                 <% end %>
                 <%= paginate @orders%>
             </tbody>
         </table>
     </div>
+</div>
 </div>
 </div>

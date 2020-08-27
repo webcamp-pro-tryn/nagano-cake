@@ -25,5 +25,4 @@ class DeliveriesControllerTest < ActionDispatch::IntegrationTest
     get deliveries_edit_url
     assert_response :success
   end
-
 end
