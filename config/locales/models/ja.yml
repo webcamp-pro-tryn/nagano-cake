@@ -19,3 +19,13 @@ ja:
   time:
     formats:
       default: "%Y/%m/%d %H:%M:%S"
+
+ja:
+  activerecord:
+    models: 
+      order: オーダー
+    attributes:
+      order:
+        name: 宛先
+        postal_code: 郵便番号
+        address: 住所
