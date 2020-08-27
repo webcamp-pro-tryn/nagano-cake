@@ -1,37 +1,33 @@
 <div class="container my-5">
+  <div class="background-color">
   <div class="row">
     <%= render '/layouts/genre_serch', genres:@genres %>
     <div class="col-md-9 mt-3">
-    <%# 画像 %>
       <div class="col-md-5 mt-5"><%= attachment_image_tag(@item, :image, size: "300x300" ) %></div>
       <div class="col-md-5 mt-5">
-      <%# 商品名 %>
         <h3 class="font-weight-bold" ><%= @item.name %></h3>
-      <%# 商品説明 %>
         <p class="item-description"><%= @item.description %></p>
-      <%# 税込み価格 %>
         <h3 class="d-inline mr-3">¥ <%= (@item.non_tax_price * 1.1).floor %></h3>(税込)
 
-        <%= form_for(@cart_item, url:customers_cart_items_path) do |f| %>
-        <div class="row mt-5 ml-5">
-          <div class="col-md-8">
-            <%= f.select :quantity,(1..10).to_a, { include_blank: '個数選択'}, { class: 'form-control product-show-form-contro' } %>
-          </div>
-          <div class="col-md-2">
-          <%= f.hidden_field :item_id, :value => @item.id %>
-            <%= f.submit 'カートに入れる', class: "btn btn-success btn-new-register btn-lg"%>
-
+        <% if customer_signed_in? %>
+          <%= form_for(@cart_item, url:customers_cart_items_path) do |f| %>
+            <div class="row mt-5 ml-5">
+              <div class="col-md-8">
+                <%= f.select :quantity,(1..10).to_a, { include_blank: '個数選択'}, { class: 'form-control product-show-form-contro' } %>
+              </div>
+              <div class="col-md-2">
+                <%= f.hidden_field :item_id, :value => @item.id %>
+                <%= f.submit 'カートに入れる', class: "btn btn-success btn-new-register btn-lg"%>
+              </div>
             </div>
-          </div>
-
-        </div>
-
-        <% end %>
- 
-  
+          <% end %>
+        <% end%>
       </div>
- 
     </div>
   </div>
-
 </div>
+</div>
+<div>
+  <%= render "layouts/footer" %>
+</div>
+

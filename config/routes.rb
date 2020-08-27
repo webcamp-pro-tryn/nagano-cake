@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  root 'homes#top'
+
   get 'homes/top' => 'homes#top'
   get 'homes/about' => 'homes#about'
 
@@ -11,12 +14,12 @@ Rails.application.routes.draw do
       end
     end
     resources :customers # ,　only: [:index, :show, :edit, :update]
+
     get 'orders/today_index' => 'orders#today_index'
     resources :orders, only: [:index, :show, :edit, :update]
     resources :order_items, only: [:update]
   end
   devise_for :hosts, controllers: {
-    registrations: 'hosts/registrations',
     sessions: "hosts/sessions",
   }
 
@@ -32,7 +35,11 @@ Rails.application.routes.draw do
   end
 
   namespace :customers do
-    resources :items, only: [:index, :show]
+    resources :items, only: [:index, :show] do
+      member do
+        get :genre_items
+      end
+    end
     resources :cart_items, only: [:index, :create, :destroy, :update]
     resources :orders, only: [:index, :new, :show, :create] do
       member do
