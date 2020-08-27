@@ -1,5 +1,11 @@
 <div class="container">
+  <div class="background-color">
+  <div class="flash">
+      <%= render "layouts/flash_messages" %>
+    </div>
+   <div class="background-color">
   <div class="row">
+   
     <div class="mr-auto">
       <h2 class="p-3 px-5 mt-5 bg-light">ショッピングカート</h2>
     </div>
@@ -62,4 +68,6 @@
         <%= link_to "買い物を続ける", customers_items_path, class: "btn btn-primary" %>
     </div>
   <% end %>
+</div>
+</div>
 </div>
