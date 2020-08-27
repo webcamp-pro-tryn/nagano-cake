@@ -12,14 +12,17 @@ class Host::ItemsController < ApplicationController
 
 	def create
 		@item = Item.new(item_params)
-		@item.save
-		redirect_to host_item_path(@item.id)
+		if @item.save
+			redirect_to host_item_path(@item.id)
+		else
+			render :new
+		end
 	end
 
 	def index
-		@items = Item.all
+		@items = Item.all.page(params[:page])
 		@search = Item.ransack(params[:q])
-		@items = @search.result
+		@items = @search.result.page(params[:page])
 	end
 
 	def show
