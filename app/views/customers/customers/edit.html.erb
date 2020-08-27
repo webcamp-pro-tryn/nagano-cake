@@ -1,13 +1,13 @@
 <div class="container-fluid">
   <div class="row">
 
+
+
 	<div class="col-md-12">
       <h2 class="mt-12 d-inline-block">会員情報編集</h2>
+
   <% if current_customer == @customer %>
   <%= form_for(@customer, url: customer_path) do |f| %>
-  <!-- <div class="form-group has-icon"> -->
-   <!--  <label class="control-label sr-only" for="inputEmail">Name</label> -->
-
 
       <div class="form-group">
         <label class="col-sm-4 control-label text-right">名前</label>
@@ -35,7 +35,7 @@
       <div class="form-group">
         <div class="col-sm-4 text-right">
           <label for="text"><p>住所</p></label></div>
-           <div class="col-sm-8 mr-sm">
+           <div class="col-sm-6 mr-sm">
               <p><%= f.text_field :address, class:"form-control"%></p>
            </div>
       </div>
@@ -57,17 +57,19 @@
       </div>
 
    <!--  <span class="fa fa-user form-control-icon" aria-hidden="true"></span> -->
-  </div>
 
-    <div class="col-md-12 text-center">
-    <%= f.submit "編集内容を保存する", class:"btn btn-primary w-30" %></div>
+      <div class="col-md-12 text-center">
+        <%= f.submit "編集内容を保存する", class:"btn btn-primary w-30" %></div>
+        <% end %>
+      <% end %>
+    </div>
+
+
+
     <div class="w-100"></div>
     <div class="col-11 mr-sm text-right">
     <%= link_to "退会する", customers_withdraw_confirm_path, class:"btn btn-danger " %>
-    <%= link_to "前に戻る", :back, class:"btn btn-info m-2 w-30" %></div>
-  </div>
-    <% end %>
+    <%= link_to "前に戻る",customer_path(current_customer) , class:"btn btn-info m-2 w-30" %></div>
 
-  <% end %>
   </div>
 </div>

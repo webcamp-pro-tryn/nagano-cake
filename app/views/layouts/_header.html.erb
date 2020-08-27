@@ -1,7 +1,8 @@
 <header>
+
 	<div class="header_flex">
 	<nav>
-		<h1 class="title">ながのCAKE</h1>
+		<h1 class="title"><%= link_to "ながのCAKE",homes_top_path %></h1>
 	</nav>
 	<nav>
 		<ul>
@@ -47,7 +48,7 @@
 			<% else %>
 			<!-- ログインしてない時 -->
 				<li>
-					<%= link_to "About", homes_about_path %>
+					<%= link_to "About", homes_about_path %></li>
 				<li>
 					<%= link_to "商品一覧", customers_items_path %>
 				</li>
@@ -60,4 +61,5 @@
 			<% end %>
 		</ul>
 	</nav>
+
 </header>

@@ -1,6 +1,6 @@
 class Customers::CustomersController < ApplicationController
 	before_action :authenticate_customer!
-	
+
 	def show
 		@customer = Customer.find(params[:id])
 		@customer = current_customer
@@ -23,27 +23,31 @@ class Customers::CustomersController < ApplicationController
 
 	def update
 		customer = Customer.find(params[:id])
-		customer.update(customer_params)
-		redirect_to customer_path(customer.id)
+		if customer.update(customer_params)
+		# byebug
+			redirect_to customer_path(current_customer)
+		else
+			render 'edit'
+		end
 	end
 
 	def destroy
 		@customer = Customer.find(params[:id])
-		customer.destroy(customer_params)
+		customer.destroy(params[:customer])
 		redirect_to new_customer_registration_path
 	end
 
 	private
 
 	def customer_params
-		params.require(:customer).permit(:family_name, :first_name, :family_name_kana, :first_name_kana, :postal_code, :address, :phone_number, :email)
+		params.require(:customer).permit(:family_name, :first_name, :family_name_kana, :first_name_kana, :postal_code, :address, :phone_number, :email ,:is_deleted)
 	end
 
-	def correct_customer
-		customer = Customer.find(params[:id])
-		if current_customer != customer
-			redirect_to new_customer_registration_path
-	end
+	# def correct_customer
+	# 	customer = Customer.find(params[:id])
+	# 	if current_customer != customer
+	# 		redirect_to new_customer_registration_path
+	# end
 
-	end
+	# end
 end

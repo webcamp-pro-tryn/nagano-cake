@@ -3,7 +3,6 @@
 	<div class="col-md-12">
 	  	<h2 class="mt-8 d-inline-block">配送先登録/一覧</h2>
 
-	  	
 		  	<%= form_for(@delivery, url: customers_deliveries_path) do |f| %>
 			 <div class= container>
 
@@ -41,6 +40,7 @@
 
 
 				<% @deliveries.each do |delivery| %>
+
 				<tbody>
 				　<tr>
 					<td class="align-middle"><%= delivery.postal_code %></td>
@@ -54,7 +54,7 @@
 			
 			</table>
 		</div>
-			<div class="pull-right"><%= link_to "前に戻る", :back, class:"btn btn-info m-2 w-30" %></div>
+			<div class="pull-right"><%= link_to "前に戻る",customer_path(current_customer), class:"btn btn-info m-2 w-30" %></div>
 		
 	</div>
   </div>
