@@ -3,7 +3,7 @@ class Host::GenresController < ApplicationController
 
   def index
     @genre = Genre.new
-    @genres = Genre.all
+    @genres = Genre.all.page(params[:page])
   end
 
   def create

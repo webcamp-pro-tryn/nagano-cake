@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
 	def set_search
 		@search = Item.ransack(params[:q])
-		@items = @search.result
+		@items = @search.result.page(params[:page])
 	end
 
 	def after_sign_in_path_for(resource)
@@ -21,7 +21,11 @@ class ApplicationController < ActionController::Base
 	end
 
 	def after_sign_out_path_for(resource)
-		homes_top_path
+		if resource == :host
+			new_host_session_path
+		else
+			root_path
+		end
 	end
 
 
