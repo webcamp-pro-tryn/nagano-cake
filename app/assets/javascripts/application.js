@@ -16,10 +16,13 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
-$(function() {
-    $('.slide').slick({
-        dots: true,
-        autoplay : true,
-        autoplaySpeed :1500,
+document.addEventListener("turbolinks:load"
+, function () {
+    $(function () {
+        $('.slide').slick({
+            dots: true,
+            autoplay : true,
+            autoplaySpeed :1500,
+        });
     });
-});
+})
