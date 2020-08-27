@@ -32,3 +32,17 @@ ja:
   time:
     formats:
       default: "%Y/%m/%d %H:%M:%S"
+  activerecord:
+    attributes:
+      genre:
+        name: ジャンル名
+  errors:
+    messages:
+      not_saved: "追加できませんでした。"
+  activerecord:
+    attributes:
+      item:
+        name: 商品名
+        description: 説明文
+        genre: ジャンル
+        non_tax_price: 価格
