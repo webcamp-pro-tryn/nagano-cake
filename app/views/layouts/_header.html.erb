@@ -1,7 +1,15 @@
 <header>
 	<div class="header_flex">
 	<nav>
-		<h1 class="navbar navbar-left shop-title">NaganoCake</h1>
+		<% if host_signed_in? %>
+			<%= link_to host_top_path do %>
+			<h1 class="shop-title">NaganoCake</h1>
+			<% end %>
+		<% else %>
+			<%= link_to root_path do %>
+			<h1 class="shop-title">NaganoCake</h1>
+			<% end %>
+		<% end %>
 	</nav>
 	<nav>
 		<ul class="navbar navbar-right">
