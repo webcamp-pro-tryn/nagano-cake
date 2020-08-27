@@ -16,6 +16,8 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
 
 * {
   margin: 0;
@@ -25,11 +27,36 @@
 
 .host-login{
 	text-align: center;
-	margin-top: 50px;
+	padding-top: 50px;
 }
 
 .aaa{
-	padding-top: 50px;
+    margin-top: 40px;
+	padding-top: 40px;
+	background-color:#EEEEEE;
+}
+.login-icon{
+    margin-top: 20px;
+	margin-bottom: 20px;
+
+}
+.sign-swich{
+	margin-top: 20px;
+}
+
+.space .actions {
+	margin-top: 5px;
+}
+
+
+.cookiea{
+	font-size: 3em;
+}
+.cookieb{
+	font-size: 4em;
+}
+.cookiec{
+	font-size: 5em;
 }
 
 li{
@@ -142,7 +169,11 @@ hr {
 }
 
 .sign-link{
-	margin-left: 180px;
+	margin-top: 30px;
+}
+.sign-linkb{
+	margin-top: 20px;
+	padding-bottom: 10px;
 }
 
 .genre {
