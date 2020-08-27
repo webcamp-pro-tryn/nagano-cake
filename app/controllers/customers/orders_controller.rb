@@ -29,11 +29,11 @@ class Customers::OrdersController < ApplicationController
       @order.postal_code = address.postal_code
       @order.address = address.address
     end
-      @cart_items = current_customer.cart_items.all
+    @cart_items = current_customer.cart_items.all
 
-  # 注文が確定したらCartItemの情報をOrderItemに入れる
+    # 注文が確定したらCartItemの情報をOrderItemに入れる
     @cart_items.each do |cart_item|
-    @order_item = @order.order_items.new
+      @order_item = @order.order_items.new
       @order_item.item_id = cart_item.item.id
       @order_item.quantity = cart_item.quantity
       @order_item.sub_price = cart_item.item.non_tax_price
@@ -56,7 +56,7 @@ class Customers::OrdersController < ApplicationController
 
   def confirm
     @order_items = OrderItem.where(order_id: params[:id])
-    @order = Order.find_by(id: params[:id]) 
+    @order = Order.find_by(id: params[:id])
    end
 
   def thanks
@@ -69,7 +69,7 @@ class Customers::OrdersController < ApplicationController
   def add_delivery
     @order = current_customer.orders.last
 
-    if current_customer.deliveries.exists?(address: @order.address )
+    if current_customer.deliveries.exists?(address: @order.address)
       flash[:notice] = "既に登録されています。"
       render 'thanks'
     else
@@ -83,8 +83,8 @@ class Customers::OrdersController < ApplicationController
   end
 
   private
+
   def order_params
     params.require(:order).permit(:payment, :name, :postal_code, :address)
   end
-
 end

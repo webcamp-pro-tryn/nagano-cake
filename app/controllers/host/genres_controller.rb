@@ -9,11 +9,11 @@ class Host::GenresController < ApplicationController
   def create
     @genre = Genre.new(genre_params)
     if @genre.save
-       flash[:notice] = "ジャンルを追加しました"
-       redirect_to host_items_path
+      flash[:notice] = "ジャンルを追加しました"
+      redirect_to host_items_path
     else
       @genres = Genre.all
-      render :index and return
+      render(:index) && return
 
     end
   end
@@ -43,5 +43,4 @@ class Host::GenresController < ApplicationController
   def genre_params
     params.require(:genre).permit(:name, :is_active)
   end
-
 end
