@@ -24,13 +24,27 @@ ja:
   activerecord:
     models: 
       order: オーダー
+      customer: 会員
+      delivery: 配送先
+      item: 商品
+      genre: ジャンル
     attributes:
       order:
         name: 宛先
         postal_code: 郵便番号
         address: 住所
-  activerecord:
-    attributes:
+      customer:
+        family_name: 姓
+        family_name_kana: 姓（カタカナ）
+        first_name: 名
+        first_name_kana: 名（カタカナ）
+        postal_code: 郵便番号
+        address: 住所
+        phone_number: 電話番号
+      delivery:
+        postal_code: 郵便番号
+        address: 住所
+        name: 宛先
       item:
         name: 商品名
         description: 説明文

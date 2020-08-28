@@ -1,4 +1,5 @@
 class Customers::CustomersController < ApplicationController
+
   before_action :authenticate_customer!
 
   def show
@@ -19,12 +20,16 @@ class Customers::CustomersController < ApplicationController
 
   def edit
     @customer = Customer.find(params[:id])
+    @customer = current_customer
   end
 
   def update
-    customer = Customer.find(params[:id])
-    customer.update(customer_params)
-    redirect_to customer_path(customer.id)
+    @customer = Customer.find(params[:id])
+    if @customer.update(customer_params)
+    redirect_to customer_path(@customer.id)
+    else
+    render 'edit'
+    end
   end
 
   def destroy
@@ -43,6 +48,6 @@ class Customers::CustomersController < ApplicationController
     customer = Customer.find(params[:id])
     if current_customer != customer
       redirect_to new_customer_registration_path
-  end
+    end
   end
 end

@@ -73,5 +73,5 @@ gem 'font-awesome-sass', '~> 5.4.1'
 gem 'rubocop-airbnb'
 gem 'dotenv-rails'
 group :production do
-  gem 'mysql2'
+  gem 'mysql2', '~>0.5.3'
 end
