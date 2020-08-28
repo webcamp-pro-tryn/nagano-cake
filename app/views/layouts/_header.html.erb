@@ -1,6 +1,8 @@
 <header>
+
 	<div class="header_flex">
 	<nav>
+
 		<% if host_signed_in? %>
 			<%= link_to host_top_path do %>
 			<h1 class="shop-title">NaganoCake</h1>
@@ -10,6 +12,7 @@
 			<h1 class="shop-title">NaganoCake</h1>
 			<% end %>
 		<% end %>
+
 	</nav>
 	<nav>
 		<ul class="navbar navbar-right">
@@ -57,7 +60,9 @@
 			<% else %>
 			<!-- ログインしてない時 -->
 				<li>
+
 					<%= link_to "About", homes_about_path, class: "btn btn-default" %>
+
 				<li>
 					<%= link_to "商品一覧", customers_items_path, class: "btn btn-default" %>
 				</li>
@@ -70,4 +75,5 @@
 			<% end %>
 		</ul>
 	</nav>
+
 </header>

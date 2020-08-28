@@ -1,4 +1,5 @@
 class Customers::CustomersController < ApplicationController
+
   before_action :authenticate_customer!
 
   def show
@@ -47,6 +48,6 @@ class Customers::CustomersController < ApplicationController
     customer = Customer.find(params[:id])
     if current_customer != customer
       redirect_to new_customer_registration_path
-  end
+    end
   end
 end

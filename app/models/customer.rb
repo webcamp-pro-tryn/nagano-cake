@@ -9,7 +9,9 @@ class Customer < ApplicationRecord
     validates :postal_code
     validates :address
     validates :phone_number
+    validates :email
   end
+
   has_many :orders,dependent: :destroy
   
   devise :database_authenticatable, :registerable,

@@ -30,7 +30,7 @@ class Customers::DeliveriesController < ApplicationController
       redirect_to customers_deliveries_path(current_customer)
     else
       render :edit
-     end
+    end
   end
 
   def destroy

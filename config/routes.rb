@@ -58,8 +58,8 @@ Rails.application.routes.draw do
   end
 
   scope module: 'customers' do
-    resources :customers do
+    resources :customers
+
       # resources :orders, only: [:index, :show]
-    end
   end
 end
