@@ -1,17 +1,4 @@
 ja:
-  activerecord:
-    models:
-      customers: "ユーザー"
-    attributes:
-      customers:
-        family_name: "姓(漢字)"
-        first_name: "名(漢字)"
-        family_name_kana: "姓(カナ)"
-        postal_code: "名(カナ)"
-        address: "住所"
-        phone_number: "電話番号"
-        email: "メールアドレス"
-        password: "パスワード"
   enums:
     order:
       payment:
@@ -34,15 +21,10 @@ ja:
       default: "%Y/%m/%d %H:%M:%S"
   activerecord:
     attributes:
-      genre:
-        name: ジャンル名
-  errors:
-    messages:
-      not_saved: "追加できませんでした。"
-  activerecord:
-    attributes:
       item:
         name: 商品名
         description: 説明文
         genre: ジャンル
         non_tax_price: 価格
+      genre:
+        name: ジャンル名
