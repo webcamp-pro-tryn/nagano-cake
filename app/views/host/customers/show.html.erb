@@ -14,13 +14,13 @@
 	    		<tr>
 					<th scope="row">顧客ID</th>
 	    			<td>
-	    				<%=@customer.id %>
+	    				<%= @customer.id %>
 	    				<span class ="status">
-	    				<% if @customer.is_deleted ==true %>
-								有効会員
-								<% else %>
-								退会済み
-								<% end %>
+	    				<% if @customer.is_deleted == true %>
+							退会済み
+						<% elsif @customer.is_deleted == false %>
+							有効
+						<% end %>
 						</span>
 					</td>
 	    		</tr>
