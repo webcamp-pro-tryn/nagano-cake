@@ -19,20 +19,6 @@ ja:
   time:
     formats:
       default: "%Y/%m/%d %H:%M:%S"
-
-ja:
-  activerecord:
-    models: 
-      order: オーダー
-      customer: 会員
-      delivery: 配送先
-      item: 商品
-      genre: ジャンル
-    attributes:
-      order:
-        name: 宛先
-        postal_code: 郵便番号
-        address: 住所
         
 ja:
   activerecord:
@@ -56,3 +42,7 @@ ja:
         non_tax_price: 価格
       genre:
         name: ジャンル名
+      order:
+        name: 宛先
+        postal_code: 郵便番号
+        address: 住所

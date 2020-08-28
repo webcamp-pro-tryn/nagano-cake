@@ -7,22 +7,16 @@
     <h4><strong>支払い方法</strong> <span class="badge badge-danger">必須</span></h4>
     <%= form_for(@order, url:customers_orders_path, method: :post) do |f| %>
 
-   <div class="ml-5 form-check">
-      <% if @order.errors.any? %>
-          <div id="error_explanation">
-            <ul>
-              <% @order.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
-      <% end %>
+    <div class="ml-5 form-check">
+         <%= render "layouts/error_messages", resource: @order %>
+
+
 
         <%= f.radio_button :payment, :クレジットカード%>
         <%= f.label :クレジットカード %><br>
         <%= f.radio_button :payment, :銀行振り込み%>
         <%= f.label :銀行振込 %>
-      </div>
+    </div>
       
       <%# お届け先 %>
       <h4><strong>お届け先</strong> <span class="badge badge-danger">必須</span></h4>
