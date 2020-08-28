@@ -9,11 +9,11 @@ class Customers::CartItemsController < ApplicationController
     @cart_items = current_customer.cart_items.all
 
     # 個数選択されていない時
-    if @cart_item.quantity == nil
+    if @cart_item.quantity.nil?
       flash[:notice] = "個数を選択してください"
       redirect_to request.referrer
     else
-    # 個数選択されている かつ カート内に既に同じ商品がある時
+      # 個数選択されている かつ カート内に既に同じ商品がある時
       @cart_items.each do |cart_item|
         if cart_item.item.name == @cart_item.item.name
           new_quantity = cart_item.quantity + @cart_item.quantity
@@ -39,15 +39,15 @@ class Customers::CartItemsController < ApplicationController
     redirect_to customers_cart_items_path
   end
 
-
   def destroy_all
     @cart_items = CartItem.all
     @cart_items.destroy_all
     redirect_to customers_cart_items_path
   end
-  
+
   private
-	def cart_item_params
-		params.require(:cart_item).permit(:quantity, :item_id)
-	end
+
+  def cart_item_params
+    params.require(:cart_item).permit(:quantity, :item_id)
+  end
 end

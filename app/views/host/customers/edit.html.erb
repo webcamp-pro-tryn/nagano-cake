@@ -1,7 +1,9 @@
-<div class="flash">
+<div class="container">
+        <div class="background-color">
+    <div class="flash">
       <%= render "layouts/flash_messages" %>
     </div>
-<div class="container">
+
     	<div class="row">
     		<div class="col-xs-12">
      <h2 class="head-line title_h2 text-center">
@@ -53,9 +55,9 @@
     	 <div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
 			<div class="checkbox">
-				<%= f.radio_button :is_deleted, :true %>
-				<%= f.label :is_deleted,"有効",{value: :true, style: "display :inline-block;",} %>
 				<%= f.radio_button :is_deleted, :false %>
+				<%= f.label :is_deleted,"有効",{value: :true, style: "display :inline-block;",} %>
+				<%= f.radio_button :is_deleted, :true %>
                 <%= f.label :is_deleted,"退会済み", {value: :false, style: "display :inline-block;"} %>
 			</div>
 			 <div class="submit">
@@ -65,6 +67,7 @@
     	 <% end %>
     	</div>
     </div>
+</div>
 </div>
 
 

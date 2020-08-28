@@ -1,4 +1,5 @@
 <div class="container">
+	 <div class="background-color">
   <h1 class="my-5">購入ありがとうございました</h1>
 
   <% if current_customer.address != @order.address %>
@@ -7,4 +8,5 @@
     <%= @order.name %> </h4>
     <%= link_to "配送先に登録する", add_delivery_customers_orders_path, method: :post, class:"btn btn-success"%>
   <% end %>
+   </div>
 </div>

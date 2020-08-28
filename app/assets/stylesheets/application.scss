@@ -25,19 +25,41 @@
   box-sizing: border-box;
 }
 
+body{
+  background: image-url('back.jpg')
+}
+body:before{
+  content: '';
+  background: inherit;
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: -1;
+}
+.background-color{
+  background-color:#EEEEEE;
+}
+
 .host-login{
 	text-align: center;
 	padding-top: 50px;
 }
 
 .aaa{
-    margin-top: 40px;
+  margin-top: 40px;
 	padding-top: 40px;
-	background-color:#EEEEEE;
+	background-color: #CCCCCC;
 }
 .login-icon{
-    margin-top: 20px;
-	margin-bottom: 20px;
+  padding-top: 20px;
+	padding-bottom: 10px;
 
 }
 .sign-swich{
@@ -179,21 +201,22 @@ hr {
 }
 
 #error_explanation {
-	background-color: #FFABCE;
-	border: 1px solid #FF97C2;
-	color: white;
+  border:2px solid #990000;
+  color:#262626;
+  background:#FFEBE8;
 	margin: 10px;
 }
 .slide-body{
-	padding-left: 90px;
+	padding-left: 180px;
 	margin-top: 50px;
+  padding-bottom: 20px;
 }
 .slide-img{
 	height: 400px;
 	width : 750px;
 }
 .about{
-    margin-top: 50px;
+    background-color:#EEEEEE;
 }
 .about-text{
 	margin-top: 40px;
@@ -228,6 +251,12 @@ hr {
   background-color: black;/*線の色*/
   border-radius: 2px;/*線の丸み*/
 }
+
+
+.field_with_errors {
+  display: contents;
+  }
+
 .genre-name {
   color: #000;
   font-size: 20px;
