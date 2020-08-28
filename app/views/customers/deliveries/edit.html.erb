@@ -5,7 +5,7 @@
 
 	<div class="col-md-12">
 	  <h2 class="mt-8 d-inline-block">配送先編集</h2>
-
+   <%= render "layouts/error_messages", resource: @delivery %>
     <%= form_for(@delivery, url: customers_delivery_path) do |f| %>
 
             <div class="row form-group">
@@ -37,7 +37,7 @@
   		<% end %>
             <div class="row">
               <div class="col-11 text-right">
-              <%= link_to "前に戻る", :back, class:"btn btn-info m-2 w-30" %></div>
+              <%= link_to "前に戻る",customers_deliveries_path, class:"btn btn-info m-2 w-30" %></div>
             </div>
 
   </div>

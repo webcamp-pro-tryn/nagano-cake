@@ -15,20 +15,18 @@ class Customers::DeliveriesController < ApplicationController
     if @delivery.save
       redirect_to customers_deliveries_path(current_customer)
     else
+      @deliveries = current_customer.deliveries.all
       render :index
      end
   end
 
   def edit
     @delivery = Delivery.find(params[:id])
-    if @delivery.customer_id != current_customer.id
-      redirect_to customer_path(current_customer)
-    end
   end
 
   def update
-    delivery = Delivery.find(params[:id])
-    if delivery.update(delivery_params)
+    @delivery = Delivery.find(params[:id])
+    if @delivery.update(delivery_params)
       redirect_to customers_deliveries_path(current_customer)
     else
       render :edit

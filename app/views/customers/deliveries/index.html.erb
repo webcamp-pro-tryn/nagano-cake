@@ -3,7 +3,7 @@
   <div class="row">
 	<div class="col-md-12">
 	  	<h2 class="mt-8 d-inline-block">配送先登録/一覧</h2>
-
+  		<%= render "layouts/error_messages", resource: @delivery %>
 	  	
 		  	<%= form_for(@delivery, url: customers_deliveries_path) do |f| %>
 			 <div class= container>

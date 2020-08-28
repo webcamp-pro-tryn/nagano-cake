@@ -7,7 +7,7 @@
   <%= form_for(@customer, url: customer_path) do |f| %>
   <!-- <div class="form-group has-icon"> -->
    <!--  <label class="control-label sr-only" for="inputEmail">Name</label> -->
-
+   <%= render "layouts/error_messages", resource: @customer %>
 
       <div class="form-group">
         <label class="col-sm-4 control-label text-right">名前</label>
@@ -57,19 +57,20 @@
       </div>
 
    <!--  <span class="fa fa-user form-control-icon" aria-hidden="true"></span> -->
-  </div>
+  
 
     <div class="col-md-12 text-center">
     <%= f.submit "編集内容を保存する", class:"btn btn-primary w-30" %></div>
+  <% end %>
+  <% end %>
+   </div>
+   
     <div class="w-100"></div>
     <div class="col-11 mr-sm text-right">
     <%= link_to "退会する", customers_withdraw_confirm_path, class:"btn btn-danger " %>
     <%= link_to "前に戻る", :back, class:"btn btn-info m-2 w-30" %></div>
   </div>
-    <% end %>
 
-  <% end %>
-   </div>
   </div>
 </div>
 
