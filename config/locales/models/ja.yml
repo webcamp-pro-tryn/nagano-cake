@@ -21,6 +21,10 @@ ja:
       default: "%Y/%m/%d %H:%M:%S"
   activerecord:
     attributes:
+      order:
+        name: 宛先
+        postal_code: 郵便番号
+        address: 住所
       item:
         name: 商品名
         description: 説明文

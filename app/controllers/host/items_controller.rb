@@ -10,8 +10,6 @@ class Host::ItemsController < ApplicationController
     @item = Item.new
   end
 
-
- 
 	def create
 		@item = Item.new(item_params)
 		if @item.save
