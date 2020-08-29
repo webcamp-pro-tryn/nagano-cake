@@ -70,7 +70,7 @@ class Customers::OrdersController < ApplicationController
     @order = current_customer.orders.last
 
     if current_customer.deliveries.exists?(address: @order.address)
-      flash[:notice] = "既に登録されています。"
+      flash[:warning] = "既に登録されています。"
       render 'thanks'
     else
       @delivery = current_customer.deliveries.new
