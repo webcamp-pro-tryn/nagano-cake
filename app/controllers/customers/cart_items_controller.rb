@@ -10,7 +10,7 @@ class Customers::CartItemsController < ApplicationController
 
     # 個数選択されていない時
     if @cart_item.quantity.nil?
-      flash[:notice] = "個数を選択してください"
+      flash[:warning] = "個数を選択してください"
       redirect_to request.referrer
     else
       # 個数選択されている かつ カート内に既に同じ商品がある時

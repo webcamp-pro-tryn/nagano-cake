@@ -14,7 +14,6 @@ class Host::GenresController < ApplicationController
     else
       @genres = Genre.all
       render(:index) && return
-
     end
   end
 
@@ -31,6 +30,17 @@ class Host::GenresController < ApplicationController
     @genre = Genre.find(params[:id])
     @genre.update(genre_params)
     redirect_to host_genres_path
+    if @genre.is_active == false
+      @genre.items.each do |item|
+        item.is_active = false
+        item.save
+      end
+    else @genre.is_active == true
+      @genre.items.each do |item|
+        item.is_active = true
+        item.save
+      end
+    end
   end
 
   private

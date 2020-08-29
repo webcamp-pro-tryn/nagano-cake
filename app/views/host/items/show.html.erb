@@ -34,9 +34,9 @@
 					<p>
 						販売ステータス
 		        <% if @item.is_active == true %>
-							　<i class="fas fa-bullseye red"></i>販売中
+							　<i class="fas fa-bullseye" style="color: blue"></i>販売中
 						<% elsif @item.is_active == false %>
-							　<i class="fas fa-bullseye blue"></i>販売停止中
+							　<i class="fas fa-times" style="color: red"></i>売切れ
 						<% end %>
 					</p>
 	      </div>

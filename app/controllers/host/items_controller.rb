@@ -10,20 +10,21 @@ class Host::ItemsController < ApplicationController
     @item = Item.new
   end
 
-  def create
-    @item = Item.new(item_params)
-    if @item.save
-      redirect_to host_item_path(@item.id)
-    else
-      render :new
-    end
-  end
 
-  def index
-    @items = Item.all.page(params[:page])
-    @search = Item.ransack(params[:q])
-    @items = @search.result.page(params[:page])
-  end
+	def create
+		@item = Item.new(item_params)
+		if @item.save
+			redirect_to host_item_path(@item.id)
+		else
+			render :new
+		end
+	end
+
+	def index
+		@items = Item.all.page(params[:page])
+		@search = Item.ransack(params[:q])
+		@items = @search.result.page(params[:page])
+	end
 
   def show
     @item = Item.find_by(id: params[:id])
