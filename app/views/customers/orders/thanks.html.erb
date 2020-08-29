@@ -1,11 +1,11 @@
 <div class="container">
 	 <div class="background-color">
-      <h1 class="my-5">購入ありがとうございました</h1>
+      <h1 class="p-5">購入ありがとうございました</h1>
       <% if current_customer.address != @order.address %>
-        <h4 class="mt-5">〒<%= @order.postal_code %>
+        <h4 class="p-5">〒<%= @order.postal_code %>
         <%= @order.address %>
         <%= @order.name %> </h4>
-        <%= link_to "配送先に登録する", add_delivery_customers_orders_path, method: :post, class:"btn btn-success"%>
+        <%= link_to "配送先に登録する", add_delivery_customers_orders_path, method: :post, class:"btn btn-success ml-5"%>
         <%= render 'layouts/flash_messages'%>
       <% end %>
    </div>

@@ -1,63 +1,61 @@
 <div class="container">
   <div class="background-color">
     <h3 class="px-5 mt-5 bg-light">注文情報確認</h3>
-  </div>
+    <div class="row">
+      <div class="col-md-8">
+        <table class="table table-bordered mt-5">
+          <thead class="thead-light">
+            <th>商品名</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+          </thead>
+          <% total = 0 %>
+          <% @order_items.each do |order_item| %>
+            <tbody>
+                <td class="col-md-4"><%= attachment_image_tag(order_item.item, :image, size: "50x50" ) %>
+                <%= order_item.item.name%></td>
+            <%# 単価 %>
+                <td class="align-middle col-md-1">￥<%= (order_item.item.non_tax_price * 1.1).floor %></td>
+            <%# 数量 %>
+                <td class="align-middle col-md-1">
+                  <%= order_item.quantity %>
+                </td>
+                <%# 小計 %>
+                <% price = (order_item.item.non_tax_price * 1.1).floor * order_item.quantity %>
+                <% total = price + total %>
+                <td class="align-middle col-md-1">￥<%= price %></td>
+            </tbody>
+          <% end %>
+        </table>
+      </div>
 
-
-  <div class="row">
-    <div class="col-md-8">
-      <table class="table table-bordered mt-5">
-        <thead class="thead-light">
-          <th>商品名</th>
-          <th>単価(税込)</th>
-          <th>数量</th>
-          <th>小計</th>
-        </thead>
-        <% total = 0 %>
-        <% @order_items.each do |order_item| %>
-          <tbody>
-              <td class="col-md-4"><%= attachment_image_tag(order_item.item, :image, size: "50x50" ) %>
-              <%= order_item.item.name%></td>
-          <%# 単価 %>
-              <td class="align-middle col-md-1">￥<%= (order_item.item.non_tax_price * 1.1).floor %></td>
-          <%# 数量 %>
-              <td class="align-middle col-md-1">
-                <%= order_item.quantity %>
-              </td>
-              <%# 小計 %>
-              <% price = (order_item.item.non_tax_price * 1.1).floor * order_item.quantity %>
-              <% total = price + total %>
-              <td class="align-middle col-md-1">￥<%= price %></td>
-          </tbody>
-        <% end %>
-      </table>
+      <div class="col-md-4">
+        <table class="table table-bordered mt-5">
+          <thead>
+            <tr>
+              <th class="bg-light">送料</th>
+              <td>￥800</td>
+            </tr>
+            <tr>
+              <th class="bg-light">商品合計</th>
+              <td>￥<%= total %></td>
+            </tr> 
+            <tr>
+              <th class="bg-light">請求金額</th>
+              <td>￥<%= total + 800 %></td>
+            </tr>
+          </thead>
+        </table>
+      </div>
     </div>
-
-    <div class="col-md-4">
-      <table class="table table-bordered mt-5">
-        <thead>
-          <tr>
-            <th class="bg-light">送料</th>
-            <td>￥800</td>
-          </tr>
-          <tr>
-            <th class="bg-light">商品合計</th>
-            <td>￥<%= total %></td>
-          </tr> 
-          <tr>
-            <th class="bg-light">請求金額</th>
-            <td>￥<%= total + 800 %></td>
-          </tr>
-        </thead>
-      </table>
-    </div>
+      
+    <h4><strong>支払い方法</strong></h4>
+    <p><%= @order.payment %></p>
+    <h4><strong>お届け先</strong></h4>
+    <p>〒<%= @order.postal_code %>
+    <%= @order.address %>
+    <%= @order.name %> </p>
+    <%= link_to "購入を確定する", thanks_customers_orders_path, class: "btn btn-danger"%>
   </div>
-    
-  <h4><strong>支払い方法</strong></h4>
-	<p><%= @order.payment %></p>
-  <h4><strong>お届け先</strong></h4>
-	<p>〒<%= @order.postal_code %>
-	<%= @order.address %>
-	<%= @order.name %> </p>
-  <%= link_to "購入を確定する", thanks_customers_orders_path, class: "btn btn-danger"%>
 </div>
