@@ -4,7 +4,6 @@
       <h3 class="px-5 mt-5 bg-light">注文情報確認</h3>
     </div>
 
-
     <div class="row">
       <div class="col-md-8">
         <table class="table table-bordered mt-5">
@@ -53,13 +52,13 @@
         </table>
       </div>
     </div>
+      
+    <h4><strong>支払い方法</strong></h4>
+    <p><%= @order.payment %></p>
+    <h4><strong>お届け先</strong></h4>
+    <p>〒<%= @order.postal_code %>
+    <%= @order.address %>
+    <%= @order.name %> </p>
+    <%= link_to "購入を確定する", thanks_customers_orders_path, class: "btn btn-danger"%>
   </div>
-    
-  <h4><strong>支払い方法</strong></h4>
-	<p><%= @order.payment %></p>
-  <h4><strong>お届け先</strong></h4>
-	<p>〒<%= @order.postal_code %>
-	<%= @order.address %>
-	<%= @order.name %> </p>
-  <%= link_to "購入を確定する", thanks_customers_orders_path, class: "btn btn-danger"%>
 </div>

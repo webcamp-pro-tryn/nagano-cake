@@ -1,9 +1,9 @@
 <div class="container">
   <div class="background-color">
+    <%= render 'layouts/flash_messages'%>
     <div class="row">
       <!-- ジャンル検索サイドバー / パーシャル表示 -->
       <%= render 'layouts/genre_serch', genres: @genres %>
-
       <div class="col-xs-9">
         <!-- 画像背景 -->
         <div class="bg_top">
