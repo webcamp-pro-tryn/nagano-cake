@@ -1,92 +1,96 @@
+<div class="container">
+    <!-- 背景色的応用div -->
     <div class="background-color">
-    <div class="flash">
-      <%= render "layouts/flash_messages" %>
-    </div>
-    <h2 class="head-line title_h2 text-center">注文履歴詳細
-    </h2>
-
-    <div class ="row">
-     	<h4 class ="sub-title col-xs-2">購入者</h4>
-        <p class ="order-info col-xs-10">
+        <!-- 更新メッセージ　-->
+        <div class="flash">
+        <%= render "layouts/flash_messages" %>
+        </div>
+        <!--　タイトル　-->
+        <h2 class="head-line title_h2 text-center">注文履歴詳細</h2>
+        <div class ="row">
+            <h4 class ="sub-title col-xs-2">購入者</h4>
+            <p class ="order-info col-xs-10">
      				<%=link_to "#{@order.customer.family_name}#{@order.customer.first_name}", host_customer_path(@order.customer) %>
-     	</p>
-    </div>
+     	    </p>
+        </div>
    
-    <div class ="row">
-        <h4 class ="sub-title col-xs-2">配送先</h4>
-        <p class ="order-info col-xs-10">
-             〒<%=@order.postal_code %>
-            　　<%=@order.address %>
-                <%=@order.name%>
-        </p>
-    </div>
-
-    <div class ="row">
-        <h4 class ="sub-title col-xs-2">支払い方法</h4>
-        <p class ="order-info col-xs-10">
-            <%= @order.payment_i18n %>
-        </p>
-    </div>
-
-    <div class ="row">
-        <h4 class ="sub-title col-xs-2">注文ステータス</h4>
-        <div class ="order-info col-xs-10">
-             <%= form_with model: @order, local: true, url: host_order_path(@order.id), method: :patch  do |f| %>
-                <%= f.select  :order_status, Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]} %>
-             <%= f.submit "更新", class: "btn btn-primary"  %>
-            <% end %>
+        <div class ="row">
+            <h4 class ="sub-title col-xs-2">配送先</h4>
+            <p class ="order-info col-xs-10">
+                 〒<%=@order.postal_code %>
+                　　<%=@order.address %>
+                    <%=@order.name%>
+            </p>
         </div>
-    </div>
+
+        <div class ="row">
+            <h4 class ="sub-title col-xs-2">支払い方法</h4>
+            <p class ="order-info col-xs-10">
+                <%= @order.payment_i18n %>
+            </p>
+        </div>
+
+        <div class ="row">
+            <h4 class ="sub-title col-xs-2">注文ステータス</h4>
+            <div class ="order-info col-xs-10">
+                 <%= form_with model: @order, local: true, url: host_order_path(@order.id), method: :patch  do |f| %>
+                    <%= f.select  :order_status, Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]} %>
+                 <%= f.submit "更新", class: "btn btn-primary"  %>
+                <% end %>
+            </div>
+        </div>
      
-     <div class ="row">
-        <div class ="order_item_info col-xs-8">
-     <table class="table table-hover table-bordered table-condensed">
-        <thead>
-          <tr class="info">
-            <th>商品名</th>
-            <th>単価（税込）</th>
-            <th>数量</th>
-            <th>小計</th>
-            <th>制作ステータス</th>
-          </tr>
-        </thead>
-        <tbody>
-            <% sum = 0 %>
-            <% @order_items.each do |order| %>
-            <tr>
-                <td><%= order.item.name %></td>
-                <td><%= order.sub_price %></td>
-                 <td><%= order.quantity %></td>
-                    <% sub_total = order.sub_price * order.quantity %>
-                    <% sum += sub_total %>
-                <td><%= sub_total %></td>
-                <td>
-                    <%= form_with model: order, local: true, url: host_order_item_path(order.id), method: :patch do |f| %>
-                    <%= f.select  :production_status, OrderItem.production_statuses.keys.map {|k| [I18n.t("enums.order_item.production_status.#{k}"), k]} %>
-                    <%= f.submit "更新", class: "btn btn-primary" %>
-                    <% end %>
-                </td>
-            </tr>
-        </tbody>
-        <% end %>
-    </table>
-</div>
+        <div class ="row">
+            <div class ="order_item_info col-xs-8">
+                 <table class="table table-hover table-bordered table-condensed">
+                    <thead>
+                      <tr class="info">
+                        <th>商品名</th>
+                        <th>単価（税込）</th>
+                        <th>数量</th>
+                        <th>小計</th>
+                        <th>制作ステータス</th>
+                      </tr>
+                    </thead>
+                    <!-- 合計金額の初期値の定義　-->
+                    <% sum = 0 %>
+                        <% @order_items.each do |order| %>
+                    <tbody>
+                        <tr>
+                            <td><%= order.item.name %></td>
+                            <td><%= order.sub_price %></td>
+                             <td><%= order.quantity %></td>
+                             <!-- 小計の計算　-->
+                                <% sub_total = order.sub_price * order.quantity %>
+                                <% sum += sub_total %>
+                            <td><%= sub_total %></td>
+                            <td>
+                                <%= form_with model: order, local: true, url: host_order_item_path(order.id), method: :patch do |f| %>
+                                <%= f.select  :production_status, OrderItem.production_statuses.keys.map {|k| [I18n.t("enums.order_item.production_status.#{k}"), k]} %>
+                                <%= f.submit "更新", class: "btn btn-primary" %>
+                                <% end %>
+                            </td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+        </div>
 
-    <div class ="price-info col-xs-3">
-        <div class="bottom">
-            <strong class ="col-xs-7">商品合計</strong>
-            <p class ="col-xs-5 text-rigth">
-                <%= sum %>円
-            </p>
-            <strong class ="col-xs-7">送料</strong>
-            <p class ="col-xs-5 text-rigth">
-                <%= @order.postage %>円
-            </p>
-            <strong class ="col-xs-7">請求金額合計</strong>
-            <strong class ="col-xs-5 text-rigth">
-                <%= sum  + @order.postage %>円
-            </strong>
+        <div class ="price-info col-xs-3">
+            <div class="bottom">
+                <strong class ="col-xs-7">商品合計</strong>
+                <p class ="col-xs-5 text-rigth">
+                     <%= sum %>円
+                </p>
+                <strong class ="col-xs-7">送料</strong>
+                <p class ="col-xs-5 text-rigth">
+                    <%= @order.postage %>円
+                </p>
+                <strong class ="col-xs-7">請求金額合計</strong>
+                <strong class ="col-xs-5 text-rigth">
+                    <%= sum  + @order.postage %>円
+                </strong>
+            </div>
         </div>
     </div>
-</div>
 </div>

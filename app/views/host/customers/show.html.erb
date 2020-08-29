@@ -1,63 +1,67 @@
-    <div class="container">
-    	<div class="background-color">
-    	<div class="row">
-    		<div class="col-xs-2">
-    	</div>
-    <div class="col-xs-8">
-    	<h3 class="customer-title-show">
-    	<strong><%= @customer.family_name%><%= @customer.first_name %>の会員詳細
-    	</strong>
-        </h3>
-    <div class="edit">
-	     <table class="table table-borderless">
-	    	<tbody>
-	    		<tr>
-					<th scope="row">顧客ID</th>
-	    			<td>
-	    				<%= @customer.id %>
-	    				<span class ="status">
-	    				<% if @customer.is_deleted == true %>
-							退会済み
-						<% elsif @customer.is_deleted == false %>
-							有効
-						<% end %>
-						</span>
-					</td>
-	    		</tr>
-	    		<tr>
-	    			<th scope="row">氏名</th>
-	    			<td><%= @customer.family_name%><%= @customer.first_name %>
-	    			</td>
-	    		</tr>
-	    		<tr>
-	    			<th scope="row">フリガナ</th>
-	    			<td><%= @customer.family_name_kana%><%= @customer.first_name_kana %>
-	    			</td>
-	    		</tr>
-	    		<tr>
-					<th scope="row">郵便番号</th>
-	    			<td><%= @customer.postal_code %>
-	    			</td>
-	    		</tr>
-	    		<tr>
-	    			<th scope="row">住所</th>
-	    			<td><%= @customer.address %>
-	    			</td>
-	    		</tr>
-	    		<tr>
-	    			<th scope="row">電話番号</th>
-	    			<td><%= @customer.phone_number %>
-	    			</td>
-	    		</tr>
-	    		<tr>
-	    			<th scope="row">メールアドレス</th>
-	    			<td><%= @customer.email%>
-	    			</td>
-	    		</tr>
-	    	</tbody>
-	    </table>
-    <%= link_to "編集する",edit_host_customer_path(@customer),class: "btn btn-info"%>
-    </div>
-</div>
-</div>
+<div class="container">
+    <div class="background-color">
+    	<!-- 更新メッセージ　-->
+    	<%= render "layouts/flash_messages" %>
+	    	<div class="row">
+	    		<div class="col-xs-2">
+	    	</div>
+	 		<div class="col-xs-8">
+	    		<h3 class="customer-title-show">
+	    			<!-- タイトル　-->
+	    		<strong><%= @customer.family_name%><%= @customer.first_name %>の会員詳細</strong>
+	        	</h3>
+    				<div class="edit">
+					    <table class="table table-borderless">
+					    	<tbody>
+					    		<tr>
+									<th scope="row">顧客ID</th>
+					    			<td>
+					    				<%= @customer.id %>
+					    				<span class ="status">
+					    				<!-- true=退会済み　false=有効　-->
+					    				<% if @customer.is_deleted == true %>
+											退会済み
+										<% elsif @customer.is_deleted == false %>
+											有効
+										<% end %>
+										</span>
+									</td>
+					    		</tr>
+					    		<tr>
+					    			<th scope="row">氏名</th>
+					    			<td><%= @customer.family_name%><%= @customer.first_name %>
+					    			</td>
+					    		</tr>
+					    		<tr>
+					    			<th scope="row">フリガナ</th>
+					    			<td><%= @customer.family_name_kana%><%= @customer.first_name_kana %>
+					    			</td>
+					    		</tr>
+					    		<tr>
+									<th scope="row">郵便番号</th>
+					    			<td><%= @customer.postal_code %>
+					    			</td>
+					    		</tr>
+					    		<tr>
+					    			<th scope="row">住所</th>
+					    			<td><%= @customer.address %>
+					    			</td>
+					    		</tr>
+					    		<tr>
+					    			<th scope="row">電話番号</th>
+					    			<td><%= @customer.phone_number %>
+					    			</td>
+					    		</tr>
+					    		<tr>
+					    			<th scope="row">メールアドレス</th>
+					    			<td><%= @customer.email%>
+					    			</td>
+					    		</tr>
+					    	</tbody>
+					    </table>
+   						<%= link_to "編集する",edit_host_customer_path(@customer),class: "btn btn-info"%>
+   					 </div>
+				</div>
+			</div>
+	</div>
 </div>

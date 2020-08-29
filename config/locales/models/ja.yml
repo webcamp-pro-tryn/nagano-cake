@@ -20,9 +20,9 @@ ja:
     formats:
       default: "%Y/%m/%d %H:%M:%S"
 
-ja:
+
   activerecord:
-    models: 
+    models:
       order: オーダー
       customer: 会員
       delivery: 配送先

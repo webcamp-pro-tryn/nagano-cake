@@ -75,8 +75,6 @@ ActiveRecord::Schema.define(version: 2020_08_25_020622) do
     t.integer "non_tax_price", null: false
     t.string "image_id"
     t.boolean "is_active", default: true, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.index ["genre_id"], name: "index_items_on_genre_id"
     t.index ["name"], name: "index_items_on_name"
   end
