@@ -11,6 +11,7 @@ class Customers::ItemsController < ApplicationController
     @genres = Genre.where(is_active: true)
   end
 
+
 	def genre_items
     @items = Item.where(genre_id: params[:id],is_active: true)
     @genres = Genre.where(is_active: true)
@@ -20,5 +21,4 @@ class Customers::ItemsController < ApplicationController
 	def item_params
 		params.require(:item).permit(:name, :image, :description, :genre_id, :non_tax_price, :is_active)
 	end
-
 end

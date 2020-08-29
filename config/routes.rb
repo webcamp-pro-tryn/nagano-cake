@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   root 'homes#top'
 
   get 'homes/top' => 'homes#top'
@@ -60,6 +59,6 @@ Rails.application.routes.draw do
   scope module: 'customers' do
     resources :customers
 
-      # resources :orders, only: [:index, :show]
+    # resources :orders, only: [:index, :show]
   end
 end
