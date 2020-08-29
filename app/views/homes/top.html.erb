@@ -1,10 +1,9 @@
 <div class="container">
-
   <div class="background-color">
+    <%= render 'layouts/flash_messages'%>
     <div class="row">
       <!-- ジャンル検索サイドバー / パーシャル表示 -->
       <%= render 'layouts/genre_serch', genres: @genres %>
-
       <div class="col-xs-9">
         <!-- 画像背景 -->
         <div class="bg_top">
@@ -42,17 +41,16 @@
             <% end %>
           </div>
           <% end %>
-          <% end%>
+          <% end %>
         </div>
       </div>
     </div>
-
-
     <div class="row">
-      <div class="col-xs-9"></div>
-      <div class="col-xs-3">
-        <p><%= link_to "もっと見る＞", customers_items_path %></p>
+      <div class="col-xs-10"></div>
+      <div class="col-xs-2">
+        <p class="motto"><%= link_to "もっと見る＞", customers_items_path %></p>
       </div>
+    </div>
   </div>
 </div>
 

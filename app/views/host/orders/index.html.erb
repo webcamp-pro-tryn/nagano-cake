@@ -1,52 +1,57 @@
 <div class="container">
+    <!-- 背景色的応用div -->
     <div class="background-color">
-    <div class="flash">
-      <%= render "layouts/flash_messages" %>
-    </div>
+        <div class="flash">
+            <!-- 更新メッセージ　-->
+            <%= render "layouts/flash_messages" %>
+        </div>
         <div class="row">
-  <div class="col-xs-12">
-    <h2 class="head-line title_h2 text-center">注文一覧</h2>
-    <%= search_form_for @q, url: host_orders_path do |f| %>
-    <div style="display:inline-flex">
-    <%= f.search_field :customer_family_name_or_customer_first_name_or_customer_family_name_kana_or_customer_first_name_kana_cont, class: "form-control", placeholder: '購入者名検索' %>
-      <%= f.submit "検索", class: "btn btn-primary"%>
-  </div>
-  </div>
-<% end %>
-        <table class="table table-hover table-bordered table-condensed">
-            <thead>
-                <tr class="items-info">
-                <th>購入日時</th>
-                <th>購入者</th>
-                <th>注文個数</th>
-                <th>注文ステータス</th>
-                <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <% @orders.each do |order| %>
-                <tr>
-                    <td>
-                        <%= order.created_at.strftime('%Y/%m/%d/%R') %>
-                    </td>
-                    <td>
-                        <%=link_to "#{order.customer.family_name}#{order.customer.first_name}", host_customer_path(order.customer) %>
-                    </td>
-                    <td>
-                        <%= order.order_items.count %>
-                    </td>
-                    <td>
-                        <%= order.order_status_i18n %>
-                    </td>
-                    <td>
-                        <%=link_to "注文詳細", host_order_path(order.id) %>
-                    </td>
-                </tr>
-                <% end %>
-                <%= paginate @orders%>
-            </tbody>
-        </table>
+            <div class="col-xs-12">
+                <!-- タイトル　-->
+                <h2 class="head-line title_h2 text-center">注文一覧</h2>
+                <!-- 氏名検索機能　-->
+                 <%= search_form_for @q, url: host_orders_path do |f| %>
+                <div style="display:inline-flex">
+                     <%= f.search_field :customer_family_name_or_customer_first_name_or_customer_family_name_kana_or_customer_first_name_kana_cont, class: "form-control", placeholder: '購入者名検索' %>
+                     <%= f.submit "検索", class: "btn btn-primary"%>
+                     <% end %>
+                </div>
+                <!-- オーダー一覧　-->
+                <table class="table table-hover table-bordered table-condensed">
+                    <thead>
+                        <tr class="info">
+                        <th>購入日時</th>
+                        <th>購入者</th>
+                        <th>注文個数</th>
+                        <th>注文ステータス</th>
+                        <th></th>
+                        </tr>
+                    </thead>
+                     <tbody>
+                        <% @orders.each do |order| %>
+                        <tr>
+                            <td>
+                                <%= order.created_at.strftime('%Y/%m/%d/%R') %>
+                            </td>
+                            <td>
+                                <%=link_to "#{order.customer.family_name}#{order.customer.first_name}", host_customer_path(order.customer) %>
+                            </td>
+                            <td>
+                                <%= order.order_items.count %>
+                            </td>
+                            <td>
+                                <%= order.order_status_i18n %>
+                            </td>
+                            <td>
+                                <%=link_to "注文詳細", host_order_path(order.id) %>
+                            </td>
+                        </tr>
+                        <% end %>
+                        <!-- ページング機能　-->
+                        <%= paginate @orders%>
+                    </tbody>
+                </table>
+             </div>
+        </div>
     </div>
-</div>
-</div>
 </div>
